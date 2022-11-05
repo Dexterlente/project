@@ -1,0 +1,26 @@
+{% extends "finalproject/layout.html" %}
+
+{% block body %}
+    <h2>Create Article</h2>
+
+    <form action= "{% url 'create_article' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Input Title</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Input Title">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="image">Photo</label>
+            <input type="text" class="form-control" name="image" id="image" placeholder="Input image">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="content">Input description</label>
+            <textarea type="text" class="form-control" name="content" id="content" placeholder="Input Content"></textarea>
+        </div>
+
+          <br>
+            <button type="submit" class="btn btn-primary">Create Article</button>
+    </form>
+    {% endblock %}

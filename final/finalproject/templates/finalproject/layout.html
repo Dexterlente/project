@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Daily News{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="{% static 'finalproject/styles.css' %}" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     {% block script %}{% endblock script %} 
+   </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ 
+        <div class="title">News Daily</div>
+    </nav>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <ul class="nav">
+        <!--
+        <li>
+            
+            <form action="{% url 'index' %}" id="search-form"> 
+                    <i class='bx bx-search' ></i>
+                    <input type="text" placeholder="Search..." type="search" name="query" id="search-input" aria-label="Search" >
+                <button class="btn btn-outline-success my-2 my-sm-0" id="btnsubmit" type="submit">Search</button>
+            </form>
+        </li>
+        -->
+        
+        <li>
+            <a href="{% url 'index' %}">
+            <i class='bx bx-grid-alt'></i>
+            <span class="links_name"> All Post</span>
+            </a>
+        </li>
+        {% if user.is_authenticated %}
+
+        <li class="nav-item">
+            <a href="{% url 'logout' %}">
+            <i class='bx bx-log-out-circle' ></i>
+            <span class="links_name"> Logout</span>
+        </a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a id="login" href="{% url 'login' %}">
+            <i class='bx bx-log-in-circle'></i>
+                <span class="links_name">Log In</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'register' %}">
+            <i class='bx bxs-registered'></i>
+                <span class="links_name"> Register</span></a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+  </div>
+    <div id="time">
+    </div>
+
+    <div class="body">
+        {% block body %}
+        {% endblock %}
+    </div>
+
+<!--Grace Lente my mom for you my first everwebsite that gonna be deployed-->
+
+<!--A salary is the drug they give you to forget your dreams.
+    -kevin oleary 
+    -->
+</body>
+</html>

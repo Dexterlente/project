@@ -1,0 +1,29 @@
+{% extends "finalproject/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="cover">
+    <div id="profile">
+        <div class="card text-center">
+            <div class="card-header">
+            <h2 id="profile_username" class="card-title"></h2>
+            </div>
+        </div>
+    </div>
+</div>  
+    
+    <div id="articles-load"></div>
+    <div id="article-contents"></div>
+    <div id="search-articles"></div>
+
+    <div id="pages" class ="row justify-content-center m-4" >
+        <nav aria-label="Page navigation example">
+            <ul id="pagination" class="pagination"></ul>
+    </nav>    
+    </div>
+
+{% endblock body %}
+
+{% block script %}
+    <script src="{% static 'finalproject/index.js' %}"></script>
+{% endblock script %} 
