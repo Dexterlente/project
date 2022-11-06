@@ -1,3 +1,7 @@
+html {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 #iimg{
     padding: 10px;
     height: 120px;
@@ -50,6 +54,12 @@ ul{
     background-color: black;
     padding-bottom: 20px;
     margin-bottom: 20px;
+}
+
+/* price page */
+.d-flex{
+    border-bottom: 2px solid;
+
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
