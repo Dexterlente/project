@@ -30,8 +30,9 @@ function load_crypto() {
             const marketcap = element.market_cap.toLocaleString("en-US");
             const percent = parseFloat(element.market_cap_change_percentage_24h).toFixed(2);
 
+            //const headers = ""
             const cryptoes = document.createElement('div');
-            cryptoes.className = 'd-flex justify-content-center p-1'
+            cryptoes.className = 'd-flex justify-content-center p-2'
             cryptoes.innerHTML = `
             <div class="col-1 mr-1"><img src="${element.image}" width="35" height="35"></div>  <div class="col-2">${element.name}</div><div class="col-2 mx-2">₱${price_php}</div> <div class="col-2 ml-2">${percent}%</div> <div class="col-auto pl-1">₱${marketcap}</div>
             `;
@@ -133,7 +134,14 @@ function load_token() {
           // }
           
 
-          document.querySelector("#token-view").append(cryptoes);
+          document.querySelector("#token-view").append();
         });
       })
 }
+
+
+
+
+//bitcoin,ethereum,binancecoin,ripple,cardano,solana,dogecoin,polkadot,matic-network,avalanche-2,uniswap,tron,litecoin
+
+//smooth-love-potion,axie-infinity,the-sandbox,decentraland,wax,wemix-token,guild-of-guardians,mobox,yield-guild-games,gala,illuvium,splinterlands,gods-unchained,pegaxy-stone
