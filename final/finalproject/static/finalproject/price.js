@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // Use buttons to toggle between views
-    document.querySelector('#crypto').addEventListener('click', () => load_crypto);
-    document.querySelector('#token').addEventListener('click', () => load_token);
+    document.querySelector('#crypto').addEventListener('click', load_crypto);
+    document.querySelector('#token').addEventListener('click', load_token);
 
   
     // By default, load the crypto
@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function load_crypto() {
   
-    document.querySelector('#token-content').style.display = 'none';
-    document.querySelector('#cryto-content').style.display = 'block';
+    document.querySelector('#token-view').style.display = 'none';
+    document.querySelector('#cryto-view').style.display = 'block';
 
 
     //const crypto_api = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cbinancecoin%2Cripple%2Ccardano%2Csolana%2Cdogecoin%2Cpolkadot%2Cmatic-network%2Cavalanche-2%2Cuniswap%2Ctron%2Clitecoin&vs_currencies=php%2Cusd&include_24hr_change=true'
@@ -21,20 +21,34 @@ function load_crypto() {
     fetch(crypto_api)
     .then((response) => response.json())
     .then(data => {
+      document.getElementById('cryto-view').innerHTML="";
+
+      const crypto_card = document.createElement('div');
+      crypto_card.className = "crypto_card";
+
+      const title = document.createElement('div');
+      title.className ="dailytitle"
+      title.innerHTML = `<div>DAILY PRICE UPDATE</div>`;
+      crypto_card.append(title);
+
+      const crypto_headers = document.createElement('div');
+      crypto_headers.className = "d-flex justify-content-center p-4 text-center font-weight-bold";
+      crypto_headers.innerHTML = `
+      <div class="col-3 px-4">Crypto</div><div class="col-2 mx-2 px-2">PHP</div> <div class="col-2 px-2">24hr</div> <div class="col-3 pl-2">Mkt Cap</div>
+      `;
+      crypto_card.append(crypto_headers);
+
           data.forEach(element => {
-            console.log(element)
-
             
-
             const price_php = element.current_price.toLocaleString("en-US");
             const marketcap = element.market_cap.toLocaleString("en-US");
             const percent = parseFloat(element.market_cap_change_percentage_24h).toFixed(2);
 
             //const headers = ""
             const cryptoes = document.createElement('div');
-            cryptoes.className = 'd-flex justify-content-center p-2'
+            cryptoes.className = 'd-flex justify-content-center'
             cryptoes.innerHTML = `
-            <div class="col-1 mr-1"><img src="${element.image}" width="35" height="35"></div>  <div class="col-2">${element.name}</div><div class="col-2 mx-2">₱${price_php}</div> <div class="col-2 ml-2">${percent}%</div> <div class="col-auto pl-1">₱${marketcap}</div>
+            <div class="col-1 pb-4"><img src="${element.image}" width="30" height="30"></div>  <div class="col-2">${element.name}</div><div class="col-3 mx-2 pl-4">₱${price_php}</div> <div class="col-2 mx-2 pr-4">${percent}%</div> <div class="col-auto pl-1">₱${marketcap}</div>
             `;
 
             if (percent >= 0){
@@ -44,8 +58,8 @@ function load_crypto() {
               cryptoes.style.color = "red"
             }
             
-
-            document.querySelector("#cryto-view").append(cryptoes);
+            crypto_card.append(cryptoes);
+            document.querySelector("#cryto-view").append(crypto_card);
           });
         })
       }
@@ -100,41 +114,57 @@ function load_crypto() {
 
 
 function load_token() {
-  document.querySelector('#token-content').style.display = 'block';
-  document.querySelector('#cryto-content').style.display = 'none';
+  document.querySelector('#token-view').style.display = 'block';
+  document.querySelector('#cryto-view').style.display = 'none';
 
 
   //const crypto_api = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cbinancecoin%2Cripple%2Ccardano%2Csolana%2Cdogecoin%2Cpolkadot%2Cmatic-network%2Cavalanche-2%2Cuniswap%2Ctron%2Clitecoin&vs_currencies=php%2Cusd&include_24hr_change=true'
   // const crypto_api ='https://api.coingecko.com/api/v3/coins/markets?vs_currency=php&ids=bitcoin%2Cethereum%2Cbinancecoin%2Cripple%2Ccardano%2Csolana%2Cdogecoin%2Cpolkadot%2Cmatic-network%2Cavalanche-2%2Cuniswap%2Ctron%2Clitecoin&order=market_cap_desc&per_page=100&page=1&sparkline=false'
-  const token_api =''
-  
+  const token_api ='https://api.coingecko.com/api/v3/coins/markets?vs_currency=php&ids=smooth-love-potion%2Caxie-infinity%2Cthe-sandbox%2Cdecentraland%2Cwax%2Cguild-of-guardians%2Cmobox%2Cyield-guild-games%2Cgala%2Cilluvium%2Csplinterlands%2Cgods-unchained%2Cpegaxy-stone&order=market_cap_desc&per_page=100&page=1&sparkline=false'
   fetch(token_api)
   .then((response) => response.json())
-  .then(data => {
-        data.forEach(element => {
-          console.log(element)
+  .then(datas => {
+        document.getElementById('token-view').innerHTML="";
+        const tokoes_card = document.createElement('div');
+        tokoes_card.className = "tokoes_card";
+        
+        const title = document.createElement('div');
+        title.className ="dailytitle"
+        title.innerHTML = `<div>DAILY PRICE UPDATE</div>`;
+        tokoes_card.append(title);
 
+        const tokoes_headers = document.createElement('div');
+        tokoes_headers.className = "d-flex justify-content-center p-4 text-center font-weight-bold";
+        tokoes_headers.innerHTML = `
+        <div class="col-3 px-4">Token</div><div class="col-2 mx-2 px-3">PHP</div> <div class="col-2 px-2">24hr</div> <div class="col-3 pl-2">Mkt Cap</div>
+        `;
+        tokoes_card.append(tokoes_headers);
+
+        datas.forEach(hakdog => {
+          console.log(hakdog)
+
+          const price_php2 = hakdog.current_price.toLocaleString("en-US");
+          const marketcap2 = hakdog.market_cap.toLocaleString("en-US");
+          const percent2 = parseFloat(hakdog.market_cap_change_percentage_24h).toFixed(2);
           
+          //const token_card = document.innerHTML('div')
 
-          // const price_php = element.current_price.toLocaleString("en-US");
-          // const marketcap = element.market_cap.toLocaleString("en-US");
-          // const percent = parseFloat(element.market_cap_change_percentage_24h).toFixed(2);
+          const tokoes = document.createElement('div');
+          tokoes.className = 'd-flex justify-content-center'
+          tokoes.innerHTML = `
+          <div class="col-1 pb-4"><img src="${hakdog.image}" width="30" height="30"></div>  <div class="col-3">${hakdog.name}</div><div class="col-2 mx-2">₱${price_php2}</div> <div class="col-2 mx-3">${percent2}%</div>  <div class="col-auto pl-1">₱${marketcap2}</div>
+          `;
 
-          // const cryptoes = document.createElement('div');
-          // cryptoes.className = 'd-flex justify-content-center p-1'
-          // cryptoes.innerHTML = `
-          // <div class="col-1 mr-1"><img src="${element.image}" width="35" height="35"></div>  <div class="col-2">${element.name}</div><div class="col-2 mx-2">₱${price_php}</div> <div class="col-2 ml-2">${percent}%</div> <div class="col-auto pl-1">₱${marketcap}</div>
-          // `;
+          if (percent2 >= 0){
+            tokoes.style.color = "green"
+          }
+          else {
+            tokoes.style.color = "red"
+          }
 
-          // if (percent >= 0){
-          //   cryptoes.style.color = "green"
-          // }
-          // else {
-          //   cryptoes.style.color = "red"
-          // }
-          
+          tokoes_card.append(tokoes);
 
-          document.querySelector("#token-view").append();
+          document.querySelector("#token-view").append(tokoes_card);
         });
       })
 }

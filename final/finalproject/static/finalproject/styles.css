@@ -58,13 +58,25 @@ ul{
 
 /* price page */
 .d-flex{
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
+    padding-top: 20px;
 
 }
+.dailytitle{
+    text-align: center;
+    font-size: 75px;
+    font-weight: bold;
+}
+#token-content {
+    display: grid;
+}
 
-@media (min-width: 320px) and (max-width: 480px) {
+
+@media (max-width: 480px) {
   
     /* CSS */
-
+.dailytitle{
+    font-size: 40px;
+}
     
   }
