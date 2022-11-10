@@ -30,6 +30,21 @@ function load_crypto() {
       title.className ="dailytitle"
       title.innerHTML = `<div>DAILY PRICE UPDATE</div>`;
       crypto_card.append(title);
+      // timememe
+      const now = new Date();
+      const months = 
+      ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
+      const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const teme = document.createElement('div');
+      teme.className ="tememe"
+      teme.innerHTML = `        
+            <div id="via"> via coingecko </div>
+            <ul>
+                  <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
+                  <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString('en-US')}</li>
+            </ul>
+            `;
+      crypto_card.append(teme);
 
       const crypto_headers = document.createElement('div');
       crypto_headers.className = "d-flex justify-content-center p-4 text-center font-weight-bold";
@@ -132,6 +147,23 @@ function load_token() {
         title.className ="dailytitle"
         title.innerHTML = `<div>DAILY PRICE UPDATE</div>`;
         tokoes_card.append(title);
+
+        // timememe
+        const now = new Date();
+        const months = 
+        ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
+        const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const teme = document.createElement('div');
+        teme.className ="tememe"
+        teme.innerHTML = `        
+              <div id="via"> via coingecko </div>
+              <ul>
+                    <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
+                    <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString('en-US')}</li>
+              </ul>
+              `;
+        tokoes_card.append(teme);
+  
 
         const tokoes_headers = document.createElement('div');
         tokoes_headers.className = "d-flex justify-content-center p-4 text-center font-weight-bold";

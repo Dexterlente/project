@@ -153,43 +153,114 @@ function load_articles(addon,page) {
         console.log(loads);
     // loop foreach email messages
         document.getElementById('articles-load').innerHTML="";
+
+        const article_card = document.createElement('main');
+
+        const left_section = document.createElement('section');
+        left_section.className = "main-container-left"
+        
+        const container_topleft = document.createElement('div');
+        container_topleft.className = "container-top-left";
+        container_topleft.innerHTML =`
+        <article>
+        <img src = "images/top-left.jpg">
+
+        <div>
+            <h3>Best Used Cars Under $20, 000 for families</h3>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ea sint, nisi rem earum fugit? Facere veritatis sapiente eveniet quibusdam.</p>
+
+            <a href = "#">Read More <span>>></span></a>
+        </div>
+        </article>
+        `;
+        left_section.append(container_topleft);
+
+        const container_bottomleft = document.createElement('div');
+        container_bottomleft.className = "container-bottom-left";
+        container_bottomleft.innerHTML = `
+        <article>
+        <img src = "images/bottom-left-1.jpg">
+            <div>
+                <h3>Best smart speakers for the year</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi iure modi animi cupiditate. Explicabo, nihil?</p>
+
+                <a href = "#">Read More <span>>></span></a>
+            </div>
+        </article>
+
+        <article>
+            <img src = "images/bottom-left-2.jpg">
+                <div>
+                    <h3>iPad Pro, reviewed: Has the iPad become my main computer now?</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi iure modi animi cupiditate. Explicabo, nihil?</p>
+
+                    <a href = "#">Read More <span>>></span></a>
+                </div>
+        </article>
+        `;
+        left_section.append(container_bottomleft);
+        article_card.append(left_section);
         build_paginator(addon,page,loads.num_pages);
+
+        //loops
         loads.articles.forEach(newMessage => {
             console.log(loads)
+            //divimarts loops throu HOOOEPES
+        const right_section = document.createElement('section');
+        right_section.className = "main-container-right"
+        right_section.innerHTML =
+        `
+        <h2>Latest Stories</h2>
+        
+        <article>
+            
+            <div>
+                <h2>Here's how to track your stimulus check with the IRS Get My Payment Portal</h2>
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, repellendus?</p>
+
+                <a href = "#">Read More <span>>></span></a>
+            </div>
+            <img src = "images/right-1.jpg">
+        </article>
+        `;
+        article_card.append(right_section);
+
             // create divs for each messages
 
-            const article_card = document.createElement('div');
-            article_card.className = "article_card";
+            // const article_card = document.createElement('div');
+            // article_card.className = "article_card";
 
-            const article_image = document.createElement('div');
-            article_image.className = "image-div";
-            article_image.innerHTML = `
-            <img src="${newMessage.image}">`;
-            article_card.append(article_image);
+            // const article_image = document.createElement('div');
+            // article_image.className = "image-div";
+            // article_image.innerHTML = `
+            // <img src="${newMessage.image}">`;
+            // article_card.append(article_image);
 
-            const makeMessage = document.createElement('div');
-            makeMessage.className = "article_format";
-            makeMessage.innerHTML = `
-            <div><h2>${newMessage.title}<h2>
-            <p>${newMessage.time_created}</p></div>
-            `;
-            article_card.append(makeMessage);
-            makeMessage.addEventListener('click', function() {
-                view_article(newMessage.id)
-              });
+            // const makeMessage = document.createElement('div');
+            // makeMessage.className = "article_format";
+            // makeMessage.innerHTML = `
+            // <div><h2>${newMessage.title}<h2>
+            // <p>${newMessage.time_created}</p></div>
+            // `;
+            // article_card.append(makeMessage);
+            // makeMessage.addEventListener('click', function() {
+            //     view_article(newMessage.id)
+            //   });
 
-            const author_prof = document.createElement('div');
-            author_prof.className = "author-div";
-            author_prof.innerHTML = `
-            <div>By: ${newMessage.author}</div>
-            `;
+            // const author_prof = document.createElement('div');
+            // author_prof.className = "author-div";
+            // author_prof.innerHTML = `
+            // <div>By: ${newMessage.author}</div>
+            // `;
 
-            article_card.append(author_prof);
-            author_prof.addEventListener('click', () => show_profile(newMessage.author));
+            // article_card.append(author_prof);
+            // author_prof.addEventListener('click', () => show_profile(newMessage.author));
 
-            document.querySelector("#articles-load").append(article_card);
         })
 
+        document.querySelector("#articles-load").append(article_card);
        });       
     }
 
