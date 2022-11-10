@@ -202,19 +202,18 @@ function load_articles(addon,page) {
         left_section.append(container_bottomleft);
         article_card.append(left_section);
         build_paginator(addon,page,loads.num_pages);
-
+        const right_section = document.createElement('section');
+        right_section.className = "main-container-right"
+        right_section.innerHTML= `<h2>Latest Stories</h2>`
         //loops
         loads.articles.forEach(newMessage => {
             console.log(loads)
             //divimarts loops throu HOOOEPES
-        const right_section = document.createElement('section');
-        right_section.className = "main-container-right"
-        right_section.innerHTML =
-        `
-        <h2>Latest Stories</h2>
+
+        const right_article = document.createElement('article');
         
-        <article>
-            
+        right_article.innerHTML =
+        `      
             <div>
                 <h2>Here's how to track your stimulus check with the IRS Get My Payment Portal</h2>
 
@@ -223,8 +222,9 @@ function load_articles(addon,page) {
                 <a href = "#">Read More <span>>></span></a>
             </div>
             <img src = "images/right-1.jpg">
-        </article>
+
         `;
+        right_section.append(right_article);
         article_card.append(right_section);
 
             // create divs for each messages
