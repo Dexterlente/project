@@ -142,6 +142,19 @@ def article(request, article_id):
     if request.method == "GET":
         return JsonResponse(article.serialize())
 
+    elif request.method == "PUT":
+        data = json.loads(request.content)
+        if data.get("archived") is not None:
+            email.archived = data["archived"]
+        email.save()
+        return HttpResponse(status=204)
+
+    else:
+        return JsonResponse({
+            "error": "GET or PUT request required."
+        }, status=400)
+
+
 def profile(request,user_id):
     profile = Profile.objects.filter(id=user_id).first()
     return JsonResponse(profile.serialize(request.user),status=200)

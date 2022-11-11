@@ -10,36 +10,6 @@ html {
     color: black;
 }
 
-.page-link {
-    border-radius: 10px;
-}
-
-.author-div{
-    position: absolute;
-    background-color: aqua;
-    font-size: 50px;
-    font-weight: bold;
-    bottom: 10px;
-}
-.article_card{
-    position:relative;
-    height: 500px;
-
-}
-
-.image-div{
-    position:absolute;
-    margin: 10px;
-    background-color: black;
-    width: 500px;
-}
-.article_format{
-    position: absolute;
-    margin: 10px;
-    right: 200px;
-    top: 150px;
-
-}
 #time{
     position: relative;
     text-align: right;
@@ -47,9 +17,6 @@ html {
     padding-top: 5px;
     font-weight: bold;
     list-style: none
-}
-ul{
-    list-style: none;
 }
 
 
@@ -226,17 +193,13 @@ main a:hover{
 }
 
 @media(max-width: 460px){
-    .hot-topic-content h2{
-        font-size: 16px;
-    }
+
 
     .main-container-right article{
         display: block;
     }
 
-    .main-container-right article img{
-        display: none;
-    }
+
 }
 
 

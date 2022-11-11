@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelector('#profile').style.display ="none";
     document.querySelector('#article-contents').style.display ="none";
-
+    //document.querySelector('#token').addEventListener('click', load_token);
 
     load_articles("",1);
   });
@@ -64,64 +64,22 @@ function view_article(id){
             <li class="list-group-item py-5">${article.content} </li>
         </ul>
         `
-        
+        // const archive_button = document.createElement('button');
+        // archive_button.innerHTML = email.archived ? "Unarchive" : "Archive";
+        // archive_button.className = email.archived ? "btn btn-success" : "btn btn-danger";
+        // archive_button.addEventListener('click', function() {
+        //   fetch(`/article/${email.id}`, {
+        //     method: 'PUT',
+        //     body: JSON.stringify({
+        //         archived: !article.archived
+        //     })
+        //   })
+        //   .then(() => { load_mailbox('archive')})
+        // });
+        // document.querySelector('#article-contents').append(archive_button);
         });
     }
-// function searched_article(id) {
-
-
-//     document.querySelector('#articles-load').style.display = 'none';
-//     document.querySelector('#profile').style.display = 'none';
-//     document.querySelector('#article-contents').style.display = 'none';
-//     document.querySelector('#pages').style.display = 'none';
-//     document.querySelector('#search-articles').style.display = 'block';
-
-//     fetch(`/load/search${id}`)
-//     .then(response => response.json())
-//     .then(article => { 
-
-//         console.log(article, "helloworld")
-//         document.getElementById('search-articles').innerHTML="";
-//         build_paginator(addon,page,loads.num_pages);
-//         loads.articles.forEach(newMessage => {
-//             console.log(loads)
-//             // create divs for each messages
-
-//             const article_card = document.createElement('div');
-//             article_card.className = "article_card";
-
-//             const article_image = document.createElement('div');
-//             article_image.className = "image-div";
-//             article_image.innerHTML = `
-//             <img src="${newMessage.image}">`;
-//             article_card.append(article_image);
-
-//             const makeMessage = document.createElement('div');
-//             makeMessage.className = "article_format";
-//             makeMessage.innerHTML = `
-//             <div><h2>${newMessage.title}<h2>
-//             <p>${newMessage.time_created}</p></div>
-//             `;
-//             article_card.append(makeMessage);
-//             makeMessage.addEventListener('click', function() {
-//                 view_article(newMessage.id)
-//               });
-
-//             const author_prof = document.createElement('div');
-//             author_prof.className = "author-div";
-//             author_prof.innerHTML = `
-//             <div>By: ${newMessage.author}</div>
-//             `;
-
-//             article_card.append(author_prof);
-//             author_prof.addEventListener('click', () => show_profile(newMessage.author));
-
-//             document.querySelector("#search-articles").append(article_card);
-//         })
-
-
-//         });
-//     }       
+  
 
 function show_profile(author_id) {
     load_articles(`?profile=${author_id}`,1);
@@ -211,52 +169,40 @@ function load_articles(addon,page) {
             //divimarts loops throu HOOOEPES
 
         const right_article = document.createElement('article');
-        
         right_article.innerHTML =
         `      
-            <div>
-                <h2>Here's how to track your stimulus check with the IRS Get My Payment Portal</h2>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, repellendus?</p>
-
-                <a href = "#">Read More <span>>></span></a>
-            </div>
-            <img src = "images/right-1.jpg">
-
+            <img src="${newMessage.image}">
         `;
+        const right_article_div = document.createElement('div');
+        right_article_div.innerHTML = `
+        <div>
+            <h2>${newMessage.title}</h2>
+        </div>
+        `;
+        const right_anchor = document.createElement('div')
+        right_anchor.className = "click_article"
+        right_anchor.innerHTML = 
+        `<a href = "#">Read Here <span>>></span></a>`;
+
+           // const clickable_article = document.getElementsByClassName('click_article');
+           right_anchor.addEventListener('click', () => {
+            view_article(newMessage.id)});
+        const clickable_author = document.createElement('p')
+        clickable_author.innerHTML = `
+        <a href = '#'>By: ${newMessage.author}</a>
+        `;
+        clickable_author.addEventListener('click', () => show_profile(newMessage.author));
+        const datedate = document.createElement('p')
+        datedate.innerHTML = `
+        ${newMessage.time_created}`;
+
+        right_article_div.append(right_anchor);
+        right_article_div.append(clickable_author);
+        right_article_div.append(datedate);
+        right_article.append(right_article_div);   
         right_section.append(right_article);
         article_card.append(right_section);
 
-            // create divs for each messages
-
-            // const article_card = document.createElement('div');
-            // article_card.className = "article_card";
-
-            // const article_image = document.createElement('div');
-            // article_image.className = "image-div";
-            // article_image.innerHTML = `
-            // <img src="${newMessage.image}">`;
-            // article_card.append(article_image);
-
-            // const makeMessage = document.createElement('div');
-            // makeMessage.className = "article_format";
-            // makeMessage.innerHTML = `
-            // <div><h2>${newMessage.title}<h2>
-            // <p>${newMessage.time_created}</p></div>
-            // `;
-            // article_card.append(makeMessage);
-            // makeMessage.addEventListener('click', function() {
-            //     view_article(newMessage.id)
-            //   });
-
-            // const author_prof = document.createElement('div');
-            // author_prof.className = "author-div";
-            // author_prof.innerHTML = `
-            // <div>By: ${newMessage.author}</div>
-            // `;
-
-            // article_card.append(author_prof);
-            // author_prof.addEventListener('click', () => show_profile(newMessage.author));
 
         })
 
