@@ -12,5 +12,6 @@ urlpatterns = [
     path("load",views.load_articles, name="load_articles"),
    # path("load/search",views.search_articles, name="query"),
     path("load/<int:article_id>", views.article, name="article"),
+    path("archived", views.archived_article, name="archived_article"),
     path("profile/<int:user_id>",views.profile,name="profile"),
 ]

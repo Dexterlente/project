@@ -45,12 +45,34 @@ html {
 .buttoms{
     padding-top: 10px;
 }
+#pages{
+    position:relative;
+}
+.pagination {
+    position: absolute;
+    top: 0px;
+    right: 25%;
+    border-radius: 10px;
+}
+.page-link{
+    border-radius: 10px;
+    background-color: black;
+}
+
+.page-item.active .page-link{
+    background-color: black;
+}
 
 @media (max-width: 480px) {
   
     /* CSS */
 .dailytitle{
     font-size: 40px;
+}
+
+.pagination {
+
+    right: 40%;
 }
     
   }
@@ -156,7 +178,7 @@ main a:hover{
     display: grid;
     grid-template-columns: 3fr 2fr;
     padding: 15px 0;
-    border-bottom: 1px solid #7ac64d;
+    border-bottom: 3px solid black;
 }
 
 .main-container-right article:last-child{

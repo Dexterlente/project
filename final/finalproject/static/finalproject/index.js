@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
     /*const url = window.location.href
     const searchForm = document.getElementById("search-form")
     const searchInput = document.getElementById("search-input")
@@ -24,8 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let now = new Date();
     let months = 
     ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    console.log(months[now.getMonth()]);
-    console.log(now.getDate());
 
     let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     // console.log(
@@ -36,12 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
                 <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString('en-US')}</li>
         </ul>`
-
-
+    // document.querySelector('#btn-archive').addEventListener('click',() => archived_article(""));
     document.querySelector('#profile').style.display ="none";
     document.querySelector('#article-contents').style.display ="none";
-    //document.querySelector('#token').addEventListener('click', load_token);
-
+    //archived_article("");
     load_articles("",1);
   });
  
@@ -55,6 +52,8 @@ function view_article(id){
         document.querySelector('#profile').style.display = 'none';
         document.querySelector('#article-contents').style.display = 'block';
         document.querySelector('#pages').style.display = 'none';
+        document.querySelector('#archived').style.display = 'none';
+        
 
         document.querySelector('#article-contents').innerHTML = `
         <ul class="list-group list-group-flush">
@@ -64,19 +63,19 @@ function view_article(id){
             <li class="list-group-item py-5">${article.content} </li>
         </ul>
         `
-        // const archive_button = document.createElement('button');
-        // archive_button.innerHTML = email.archived ? "Unarchive" : "Archive";
-        // archive_button.className = email.archived ? "btn btn-success" : "btn btn-danger";
-        // archive_button.addEventListener('click', function() {
-        //   fetch(`/article/${email.id}`, {
-        //     method: 'PUT',
-        //     body: JSON.stringify({
-        //         archived: !article.archived
-        //     })
-        //   })
-        //   .then(() => { load_mailbox('archive')})
-        // });
-        // document.querySelector('#article-contents').append(archive_button);
+        const archive_button = document.createElement('button');
+        archive_button.innerHTML = article.archived ? "Unarchive" : "Archive";
+        archive_button.className = article.archived ? "btn btn-success" : "btn btn-danger";
+        archive_button.addEventListener('click', function() {
+          fetch(`/load/${article.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                archived: !article.archived
+            })
+          }) 
+          .then(() => { load_archive})
+        });
+        document.querySelector('#article-contents').append(archive_button);
         });
     }
   
@@ -84,7 +83,9 @@ function view_article(id){
 function show_profile(author_id) {
     load_articles(`?profile=${author_id}`,1);
     document.querySelector('#article-contents').style.display = 'none'; 
-    document.querySelector('#articles-load').style.display = 'none'; 
+    document.querySelector('#articles-load').style.display = 'none';
+    document.querySelector('#archived').style.display = 'none'; 
+    document.querySelector('#pages').style.display = 'none'; 
     document.querySelector('#profile').style.display = 'block';  
     fetch(`/profile/${author_id}`)
     .then(response => response.json())
@@ -159,13 +160,15 @@ function load_articles(addon,page) {
         `;
         left_section.append(container_bottomleft);
         article_card.append(left_section);
-        build_paginator(addon,page,loads.num_pages);
+
+        
         const right_section = document.createElement('section');
         right_section.className = "main-container-right"
         right_section.innerHTML= `<h2>Latest Stories</h2>`
         //loops
+        build_paginator(addon,page,loads.num_pages);
+
         loads.articles.forEach(newMessage => {
-            console.log(loads)
             //divimarts loops throu HOOOEPES
 
         const right_article = document.createElement('article');
@@ -179,6 +182,7 @@ function load_articles(addon,page) {
             <h2>${newMessage.title}</h2>
         </div>
         `;
+        
         const right_anchor = document.createElement('div')
         right_anchor.className = "click_article"
         right_anchor.innerHTML = 
@@ -187,6 +191,7 @@ function load_articles(addon,page) {
            // const clickable_article = document.getElementsByClassName('click_article');
            right_anchor.addEventListener('click', () => {
             view_article(newMessage.id)});
+
         const clickable_author = document.createElement('p')
         clickable_author.innerHTML = `
         <a href = '#'>By: ${newMessage.author}</a>
@@ -195,7 +200,7 @@ function load_articles(addon,page) {
         const datedate = document.createElement('p')
         datedate.innerHTML = `
         ${newMessage.time_created}`;
-
+        
         right_article_div.append(right_anchor);
         right_article_div.append(clickable_author);
         right_article_div.append(datedate);
@@ -205,28 +210,74 @@ function load_articles(addon,page) {
 
 
         })
+        
+        const button_archived = document.createElement('button');
+        button_archived.innerHTML = "Archived News"
+        button_archived.className =  "btn btn-dark mt-4";
+        button_archived.addEventListener('click', () => archived_article(""));
 
+        right_section.append(button_archived);
+        
+        // const paginator_pages = document.createElement('div')
+        // paginator_pages.className('row justify-content-center m-4')
+        // paginator_pages.innerHTML = `
+        // <nav aria-label="Page navigation example">
+        // <ul id="pagination" class="pagination"></ul>
+        // `;
+        // right_section.append(paginator_pages);
         document.querySelector("#articles-load").append(article_card);
+        
        });       
     }
 
+function archived_article(addon){
+    document.querySelector('#articles-load').style.display = 'none';
+    document.querySelector('#profile').style.display = 'none';
+    document.querySelector('#article-contents').style.display = 'none';
+    document.querySelector('#pages').style.display = 'none';
+    document.querySelector('#archived').style.display = 'block';
+
+    fetch(`/archived${addon}`)
+    .then(response => response.json())
+    .then(data => { 
+        console.log(data);
+
+        data.archived.forEach(newData => {
+            console.log(newData)
+            const ardata = document.createElement('div');
+            ardata.className = "list-group-item";
+            ardata.innerHTML = `
+            <h6>${newData.title}</h6>
+            <h5>By: ${newData.author}<h5>
+            <p>${newData.time_created}</p>
+            `;
+            ardata.addEventListener('click', function() {
+                view_article(newData.id)
+              });
+            document.querySelector("#archived").append(ardata);
+        })
+    })
+}
+
+
 function build_paginator(addon,page,num_pages) {
     page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
+    //const page_list = document.createElement('div');
     page_list.innerHTML="";
 
     const previous = document.createElement('li');
     if(page==1){
+        console.log(previous)
         previous.className = "page-item disabled";    
     } else {
         previous.className = "page-item";    
         previous.addEventListener('click', () => load_articles(addon,page-1));
     }
-
     const previous_page = document.createElement('a');
     previous_page.className="page-link";
 
     previous_page.href="#";
-    previous_page.innerHTML="Previous";
+    previous_page.innerHTML="<";
     previous.append(previous_page);    
     page_list.append(previous);
     
@@ -258,8 +309,10 @@ function build_paginator(addon,page,num_pages) {
     const next_page = document.createElement('a');
     next_page.className="page-link"; 
     next_page.href="#";
-    next_page.innerHTML="Next";
+    next_page.innerHTML=">";
     next.append(next_page);
     page_list.append(next);
 
+    
 }
+

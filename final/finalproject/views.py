@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.core.paginator import Paginator
 import json
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     return render(request, "finalproject/index.html")
@@ -106,9 +107,16 @@ def create_article(request):
     return index(request)
 
 def load_articles(request): 
-    articles = Article.objects.all()
+    articles = Article.objects.filter(archived=False)
     return paginated_articles(request,articles)
     #return JsonResponse([article.serialize() for article in articles], safe=False)
+        #return JsonResponse([article.serialize() for article in articles], safe=False)
+    # elif load_articles == "archive":
+    #     articles = Articles.objects.filter(archived=True)
+    # else:
+    #     return JsonResponse({"error": "Invalid"}, status=400)
+    # articles = Article.order_by("-time_created").all()
+    # return JsonResponse([article.serialize() for article in articles], safe=False)
 
 # def search_articles(request):
 #     search = request.GET.get('query')
@@ -124,6 +132,14 @@ def load_articles(request):
 #     return JsonResponse({status: 200, 'data': payload})
 #     #return paginated_articles(request,articles)
 # #OMG so hard to many errors
+
+def archived_article(request):
+    archived = Article.objects.filter(archived=True)
+    archived = archived.order_by("-time_created").all()
+    return JsonResponse({
+        "archived": [archive.serialize() for archive in archived]}, safe=False)
+    print(archive)
+    #return paginated_articles(request,articles)
 
 def paginated_articles(request,articles):
     articles = articles.order_by("-time_created").all()
@@ -143,16 +159,17 @@ def article(request, article_id):
         return JsonResponse(article.serialize())
 
     elif request.method == "PUT":
-        data = json.loads(request.content)
+        data = json.loads(request.body)
         if data.get("archived") is not None:
-            email.archived = data["archived"]
-        email.save()
+            article.archived = data["archived"]
+        article.save()
         return HttpResponse(status=204)
 
     else:
         return JsonResponse({
             "error": "GET or PUT request required."
         }, status=400)
+
 
 
 def profile(request,user_id):

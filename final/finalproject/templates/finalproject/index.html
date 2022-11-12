@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block body %}
+
 <div class="cover">
     <div id="profile">
         <div class="card text-center">
@@ -15,13 +16,15 @@
     <div id="articles-load"></div>
     <div id="article-contents"></div>
     <div id="search-articles"></div>
+    <div id="archived"></div>
 
-    <div id="pages" class ="row justify-content-center m-4" >
-        <nav aria-label="Page navigation example">
-            <ul id="pagination" class="pagination"></ul>
-    </nav>    
+    <div class="page-cont">
+        <div id="pages" class ="row justify-content-center">
+                    <ul id="pagination" class="pagination"></ul>
+   
+        </div>
+        
     </div>
-
 {% endblock body %}
 
 {% block script %}
