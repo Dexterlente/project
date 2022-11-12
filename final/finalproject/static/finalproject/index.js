@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
      document.getElementById('time').innerHTML = `
         <ul>
                 <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
-                <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString('en-US')}</li>
+                <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
         </ul>`
     // document.querySelector('#btn-archive').addEventListener('click',() => archived_article(""));
     document.querySelector('#profile').style.display ="none";

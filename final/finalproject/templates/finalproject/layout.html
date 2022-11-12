@@ -17,7 +17,7 @@
         <div class="title . text-center"><a href="{% url 'index' %}">News Daily</div>
     </nav>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <ul class="nav">
+    <ul class="nav pr-4">
         <!--
         <li>
             
@@ -28,11 +28,17 @@
             </form>
         </li>
         -->
-        <li class="nav-item">
-            <a id="live-prices" href="{% url 'price' %}">
+        <li class="nav-item pr-4">
+            <a href="#">
+                <span class="links_name">Cryptopedia</span>
+            </a>
+        </li>  
+        <li class="nav-item pr-4">
+            <a href="{% url 'price' %}">
                 <span class="links_name">Live Prices</span>
             </a>
         </li>  
+        
         {% if user.is_authenticated %}
 
         <li class="nav-item">

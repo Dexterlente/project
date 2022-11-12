@@ -41,7 +41,7 @@ function load_crypto() {
             <div id="via"> via coingecko </div>
             <ul>
                   <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
-                  <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString('en-US')}</li>
+                  <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
             </ul>
             `;
       crypto_card.append(teme);
@@ -159,7 +159,7 @@ function load_token() {
               <div id="via"> via coingecko </div>
               <ul>
                     <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
-                    <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString('en-US')}</li>
+                    <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
               </ul>
               `;
         tokoes_card.append(teme);
