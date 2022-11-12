@@ -23,9 +23,12 @@
                     <ul id="pagination" class="pagination"></ul>
    
         </div>
-        
     </div>
+    {% if user.is_authenticated %}
+    <div id="archiver-btn"></div>
+    {% endif %}
 {% endblock body %}
+
 
 {% block script %}
     <script src="{% static 'finalproject/index.js' %}"></script>

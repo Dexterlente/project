@@ -73,9 +73,10 @@ function view_article(id){
                 archived: !article.archived
             })
           }) 
-          .then(() => { load_archive})
+          .then(() => { archived_article})
         });
-        document.querySelector('#article-contents').append(archive_button);
+        document.querySelector('#archiver-btn').append(archive_button);
+        //document.querySelector('#article-contents').append(archive_button);
         });
     }
   

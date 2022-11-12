@@ -132,7 +132,7 @@ def load_articles(request):
 #     return JsonResponse({status: 200, 'data': payload})
 #     #return paginated_articles(request,articles)
 # #OMG so hard to many errors
-
+@csrf_exempt
 def archived_article(request):
     archived = Article.objects.filter(archived=True)
     archived = archived.order_by("-time_created").all()
@@ -148,7 +148,7 @@ def paginated_articles(request,articles):
     return JsonResponse({
         "articles": [article.serialize() for article in page_obj],
         "num_pages": paginator.num_pages }, safe=False)
-
+@csrf_exempt
 def article(request, article_id):
     try:
         article = Article.objects.get(id=article_id)
