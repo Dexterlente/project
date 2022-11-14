@@ -47,22 +47,32 @@ function view_article(id){
     .then(response => response.json())
     .then(article => {
         //print view article
-        console.log(article);
+        //console.log(article);
         document.querySelector('#articles-load').style.display = 'none';
         document.querySelector('#profile').style.display = 'none';
         document.querySelector('#article-contents').style.display = 'block';
         document.querySelector('#pages').style.display = 'none';
         document.querySelector('#archived').style.display = 'none';
         
-
-        document.querySelector('#article-contents').innerHTML = `
+        const article_viewers = document.createElement('div');
+        article_viewers.innerHTML=
+         `
         <ul class="list-group list-group-flush">
             <li class="list-group-item"> ${article.title}</li>
             <li class="list-group-item">By: ${article.author}</li>
             <li class="list-group-item">${article.time_created}</li>
             <li class="list-group-item py-5">${article.content} </li>
         </ul>
-        `
+        `;
+        document.querySelector('#article-contents').append(article_viewers);
+
+        sessionStorage.setItem('articles',JSON.stringify(article));
+        console.log(article)
+        let retrieveArticles = JSON.parse(sessionStorage.getItem('articles'));
+        console.log(retrieveArticles);
+
+
+
         const archive_button = document.createElement('button');
         archive_button.innerHTML = article.archived ? "Unarchive" : "Archive";
         archive_button.className = article.archived ? "btn btn-success" : "btn btn-danger";
@@ -77,7 +87,18 @@ function view_article(id){
         });
         document.querySelector('#archiver-btn').append(archive_button);
         //document.querySelector('#article-contents').append(archive_button);
+
+
         });
+
+
+        // sessionStorage.setItem('currentTab', id);
+        // const currentTab = sessionStorage.getItem('currentTab');
+        // if (currentTab) {
+        //     document.getElementById(currentTab).onload();
+        //   } else {
+        //     document.getElementByName("article-content").onload();
+        //   }
     }
   
 
