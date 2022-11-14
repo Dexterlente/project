@@ -1,26 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
-    /*const url = window.location.href
-    const searchForm = document.getElementById("search-form")
-    const searchInput = document.getElementById("search-input")
-    
-    const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
-    console.log(csrf); 
-    
-    document.querySelector('#btnsubmit').addEventListener('submit', () => searched_article("",1));
-
-    console.log()*/
-    // fetch('http://worldtimeapi.org/api/timezone/Asia/Manila')
-    // .then((response) => response.json())
-    // .then((data) => {
-    //     console.log(data)
-    //     document.getElementById('time').innerHTML = `
-    //     <ul>
-    //             <li> ${data.datetime} </li>
-    //             <li> ${data.unixtime} ${data.timezone} </li>
-    //     </ul>`
-    //     }
-    // ); i dont know why did i use api, there is a build in js for time LOLOL
+    if(sessionStorage.getItem('articles') !=null) {
+        document.getElementById('article-contents').innerHTML = view_article(sessionStorage.getItem('articles'));
+     }
         
     let now = new Date();
     let months = 
@@ -39,9 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#profile').style.display ="none";
     document.querySelector('#article-contents').style.display ="none";
     //archived_article("");
-    load_articles("",1);
+    load_articles("");
   });
- 
+
 function view_article(id){
     fetch(`/load/${id}`)
     .then(response => response.json())
@@ -54,24 +35,25 @@ function view_article(id){
         document.querySelector('#pages').style.display = 'none';
         document.querySelector('#archived').style.display = 'none';
         
-        const article_viewers = document.createElement('div');
-        article_viewers.innerHTML=
-         `
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"> ${article.title}</li>
-            <li class="list-group-item">By: ${article.author}</li>
-            <li class="list-group-item">${article.time_created}</li>
-            <li class="list-group-item py-5">${article.content} </li>
-        </ul>
-        `;
-        document.querySelector('#article-contents').append(article_viewers);
+        // const article_viewers = document.createElement('div');
+        // article_viewers.innerHTML=
+        //  `
+        // <ul class="list-group list-group-flush">
+        //     <li class="list-group-item"> ${article.title}</li>
+        //     <li class="list-group-item">By: ${article.author}</li>
+        //     <li class="list-group-item">${article.time_created}</li>
+        //     <li class="list-group-item py-5">${article.content} </li>
+        // </ul>
+        // `;
+        // document.querySelector('#article-contents').append(article_viewers);
 
-        sessionStorage.setItem('articles',JSON.stringify(article));
+        sessionStorage.setItem('articles', JSON.stringify(article));
         console.log(article)
-        let retrieveArticles = JSON.parse(sessionStorage.getItem('articles'));
-        console.log(retrieveArticles);
+        console.log(JSON.stringify(article))
+        console.log(sessionStorage.getItem('articles'));
+        //document.getElementById('article-contents').innerHTML=sessionStorage.getItem('articles');
 
-
+    
 
         const archive_button = document.createElement('button');
         archive_button.innerHTML = article.archived ? "Unarchive" : "Archive";
@@ -99,7 +81,7 @@ function view_article(id){
         //   } else {
         //     document.getElementByName("article-content").onload();
         //   }
-    }
+    };
   
 
 function show_profile(author_id) {
