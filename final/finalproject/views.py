@@ -170,7 +170,57 @@ def article(request, article_id):
             "error": "GET or PUT request required."
         }, status=400)
 
+@login_required()
+def create_post(request):
+    if request.method == "POST":
+        title = request.POST['title']
+        content = request.POST['content']
+        image = request.POST['image']
+        logged_user = request.user
+        created_post = Post(
+            title=title,
+            content=content,
+            image=image,
+            author=logged_user,      
+        )
+        created_post.save()
+    elif request.method == "PUT":
+        data = json.loads(request.body)
+        post_id = int(data["post_id"])
+        new_content = data["new_content"]
+        post = Post.objects.filter(id=article_id).first()
+        if post.author.user != request.user:
+            return HttpResponse(status=401)
+        post.content = new_content
+        post.save()
+        return JsonResponse({"result": True},status=200)
+    elif request.method == "GET":
+        return render(request, "finalproject/create_post.html")
+    else:
+        return JsonResponse({
+        "error": f"request methods supported: POST,PUT, GET"
+    }, status=400)
+    return index(request)
 
+def load_post(request): 
+    post = Post.objects.all()
+    posted = post.order_by("-time_created").all()
+    return JsonResponse({
+        "posted": [post.serialize() for post in posted]}, safe=False)
+
+def post(request, post_id):
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        return JsonResponse({"error": "Post not found."}, status=404)
+
+    if request.method == "GET":
+        return JsonResponse(article.serialize())
+
+    else:
+        return JsonResponse({
+            "error": "GET request required."
+        }, status=400)
 
 def profile(request,user_id):
     profile = Profile.objects.filter(id=user_id).first()

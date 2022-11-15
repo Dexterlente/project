@@ -8,10 +8,15 @@ urlpatterns = [
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
     path("register", views.register, name="register"),
-    path("create_article",views.create_article, name="create_article"),
     path("load",views.load_articles, name="load_articles"),
-   # path("load/search",views.search_articles, name="query"),
+    path("profile/<int:user_id>",views.profile,name="profile"),
+    #articles
+    path("create_article",views.create_article, name="create_article"),
     path("load/<int:article_id>", views.article, name="article"),
     path("archived", views.archived_article, name="archived_article"),
-    path("profile/<int:user_id>",views.profile,name="profile"),
+    #post
+    path("create_post",views.create_post, name="create_post"),
+    path("post",views.load_post, name="load_post"),
+
+    path("load/<int:post_id>", views.post, name="post"),
 ]

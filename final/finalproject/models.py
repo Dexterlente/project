@@ -34,7 +34,7 @@ class Article(models.Model):
             "content": self.content,
             "image": self.image,
             "time_created": self.time_created.strftime("%b %#d, %Y"),
-            "author": f"{self.author.first_name} {self.author.first_name}",
+            "author": f"{self.author.first_name} {self.author.last_name}",
             "archived": self.archived
         }
         
@@ -51,9 +51,10 @@ class Post(models.Model):
 
     def serialize(self):
         return{
+            "id": self.id,
             "title_post": self.title_post,
             "content_post": self.content_post,
             "image": self.image_post,
-            "time_created_post": self.time_created_post.strftime("%b %#d %Y, %#I:%M %p"),
-            "author_post": self.author_post.username,
+            "time_created_post": self.time_created_post.strftime("%b %#d, %Y"),
+            "author": f"{self.author.first_name} {self.author.last_name}",
         }

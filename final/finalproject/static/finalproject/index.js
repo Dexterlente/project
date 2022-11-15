@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    if(sessionStorage.getItem('articles') !=null) {
-        document.getElementById('article-contents').innerHTML = view_article(sessionStorage.getItem('articles'));
+    
+    if(sessionStorage.getItem('articles') !== null) {
+         view_article(sessionStorage.getItem('articles'));
      }
+     console.log(sessionStorage)
+     console.log(view_article)
         
     let now = new Date();
     let months = 
@@ -16,11 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
                 <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
         </ul>`
-    // document.querySelector('#btn-archive').addEventListener('click',() => archived_article(""));
-    document.querySelector('#profile').style.display ="none";
-    document.querySelector('#article-contents').style.display ="none";
+
     //archived_article("");
     load_articles("");
+
   });
 
 function view_article(id){
@@ -35,17 +37,17 @@ function view_article(id){
         document.querySelector('#pages').style.display = 'none';
         document.querySelector('#archived').style.display = 'none';
         
-        // const article_viewers = document.createElement('div');
-        // article_viewers.innerHTML=
-        //  `
-        // <ul class="list-group list-group-flush">
-        //     <li class="list-group-item"> ${article.title}</li>
-        //     <li class="list-group-item">By: ${article.author}</li>
-        //     <li class="list-group-item">${article.time_created}</li>
-        //     <li class="list-group-item py-5">${article.content} </li>
-        // </ul>
-        // `;
-        // document.querySelector('#article-contents').append(article_viewers);
+        const article_viewers = document.createElement('div');
+        article_viewers.innerHTML=
+         `
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"> ${article.title}</li>
+            <li class="list-group-item">By: ${article.author}</li>
+            <li class="list-group-item">${article.time_created}</li>
+            <li class="list-group-item py-5">${article.content} </li>
+        </ul>
+        `;
+        document.querySelector('#article-contents').append(article_viewers);
 
         sessionStorage.setItem('articles', JSON.stringify(article));
         console.log(article)
@@ -95,6 +97,7 @@ function show_profile(author_id) {
     .then(response => response.json())
     .then(profile => {
         document.getElementById('profile_username').innerHTML=profile.profile_username;
+
     })
     window.scrollTo(0,0);
     }
