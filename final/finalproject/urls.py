@@ -15,8 +15,9 @@ urlpatterns = [
     path("load/<int:article_id>", views.article, name="article"),
     path("archived", views.archived_article, name="archived_article"),
     #post
+    path("post-page", views.post_page, name="post_page"),
     path("create_post",views.create_post, name="create_post"),
     path("post",views.load_post, name="load_post"),
 
-    path("load/<int:post_id>", views.post, name="post"),
+    path("post/<int:post_id>", views.post, name="post"),
 ]

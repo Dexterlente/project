@@ -1,14 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // Use buttons to toggle between views
-    document.querySelector('#crypto').addEventListener('click', load_crypto);
-    document.querySelector('#token').addEventListener('click', load_token);
+    document.querySelector('#crypto').addEventListener('click',() =>{
+              updateSession("crypto");
+              load_crypto();
+  });
+    
+    document.querySelector('#token').addEventListener('click', () =>{
+              updateSession("token");
+              load_token();
+    });
 
-  
-    // By default, load the crypto
-    load_crypto("",1);
+    	// By default, load the inbox
+    if (sessionStorage.getItem("mail") !== null) {
+        const item = sessionStorage.getItem("mail"); //hereeeeeeeeeeeeeeeeeeeeee
+        if (item === "token") {
+          load_token();
+        } else {
+          load_crypto();
+        }
+    } else {
+      load_crypto();
+    }
   });
 
+const updateSession = (path) => {
+    sessionStorage.setItem("mail", path);
+  };
 
 function load_crypto() {
   

@@ -53,6 +53,7 @@ function view_article(id){
         console.log(article)
         console.log(JSON.stringify(article))
         console.log(sessionStorage.getItem('articles'));
+
         //document.getElementById('article-contents').innerHTML=sessionStorage.getItem('articles');
 
     
@@ -323,3 +324,6 @@ function build_paginator(addon,page,num_pages) {
     
 }
 
+function load_post(param){
+    pass
+}

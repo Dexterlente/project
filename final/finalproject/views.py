@@ -15,6 +15,9 @@ def index(request):
 def price(request):
     return render(request, "finalproject/price.html")
 
+def post_page(request):
+    return render(request, "finalproject/cryptopedia.html")
+
 def login_view(request):
     if request.method == "POST":
 
