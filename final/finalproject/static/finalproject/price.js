@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  
 const updateSession = (path) => {
     sessionStorage.setItem("mail", path);
   };
