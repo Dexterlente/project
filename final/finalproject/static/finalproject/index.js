@@ -116,7 +116,6 @@ function show_profile(author_id) {
         document.getElementById('profile_username').innerHTML=profile.profile_username;
 
     })
-    window.scrollTo(0,0);
     }
     
 function load_articles(addon,page) {
