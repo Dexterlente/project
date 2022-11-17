@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
-    if(sessionStorage.getItem('articles') !== null) {
-         view_article(sessionStorage.getItem('articles'));
-     }
-     console.log(sessionStorage)
-     console.log(view_article)
-        
+
     let now = new Date();
     let months = 
     ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -19,11 +13,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
                 <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
         </ul>`
-
+    document.querySelector('#indexdex').addEventListener('click', () =>{
+        updateSession("mainmain");
+        load_articles("");
+    });
+        document.querySelector('#archive-btn').addEventListener('click', () =>{
+        updateSession("archiver");
+        archived_article("");
+    });
     //archived_article("");
-    load_articles("");
-
+    //load_articles("");
+    if (sessionStorage.getItem("article") !== null) {
+        const item = sessionStorage.getItem("article"); //hereeeeeeeeeeeeeeeeeeeeee
+        if (item === "archiver") {
+            archived_article("");
+        } else {
+            load_articles("");
+        }
+    } else {
+        load_articles("");
+    }
   });
+
+const updateSession = (path) => {
+    sessionStorage.setItem("article", path);
+    };
 
 function view_article(id){
     fetch(`/load/${id}`)
@@ -36,6 +50,7 @@ function view_article(id){
         document.querySelector('#article-contents').style.display = 'block';
         document.querySelector('#pages').style.display = 'none';
         document.querySelector('#archived').style.display = 'none';
+        document.querySelector('#archive-btn').style.display = 'none';
         
         const article_viewers = document.createElement('div');
         article_viewers.innerHTML=
@@ -94,6 +109,7 @@ function show_profile(author_id) {
     document.querySelector('#archived').style.display = 'none'; 
     document.querySelector('#pages').style.display = 'none'; 
     document.querySelector('#profile').style.display = 'block';  
+    document.querySelector('#archive-btn').style.display = 'none';
     fetch(`/profile/${author_id}`)
     .then(response => response.json())
     .then(profile => {
@@ -215,24 +231,15 @@ function load_articles(addon,page) {
         right_article.append(right_article_div);   
         right_section.append(right_article);
         article_card.append(right_section);
-
-
         })
         
-        const button_archived = document.createElement('button');
-        button_archived.innerHTML = "Archived News"
-        button_archived.className =  "btn btn-dark mt-4";
-        button_archived.addEventListener('click', () => archived_article(""));
+        // const button_archived = document.createElement('button');
+        // button_archived.innerHTML = "Archived News"
+        // button_archived.className =  "btn btn-dark mt-4";
+        // button_archived.addEventListener('click', () => archived_article(""));
 
-        right_section.append(button_archived);
+        // right_section.append(button_archived);
         
-        // const paginator_pages = document.createElement('div')
-        // paginator_pages.className('row justify-content-center m-4')
-        // paginator_pages.innerHTML = `
-        // <nav aria-label="Page navigation example">
-        // <ul id="pagination" class="pagination"></ul>
-        // `;
-        // right_section.append(paginator_pages);
         document.querySelector("#articles-load").append(article_card);
         
        });       
@@ -244,6 +251,7 @@ function archived_article(addon){
     document.querySelector('#article-contents').style.display = 'none';
     document.querySelector('#pages').style.display = 'none';
     document.querySelector('#archived').style.display = 'block';
+    document.querySelector('#archive-btn').style.display = 'none';
 
     fetch(`/archived${addon}`)
     .then(response => response.json())
