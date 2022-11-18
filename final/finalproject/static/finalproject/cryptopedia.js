@@ -66,6 +66,7 @@ function load_post(addon) {
                 <h5>By: ${newData.author_post}<h5>
                 <p>${newData.time_created_post}</p>
                 `;
+
 				//here
 				const updateSession = () =>
 					sessionStorage.setItem("postID", newData.id);
@@ -78,3 +79,4 @@ function load_post(addon) {
 			});
 		});
 }
+
