@@ -207,7 +207,7 @@ def create_post(request):
 
 def load_post(request): 
     post = Post.objects.all()
-    posted = post.order_by("-time_created").all()
+    posted = post.order_by("-time_created_post").all()
     return JsonResponse({
         "posted": [post.serialize() for post in posted]}, safe=False)
 
