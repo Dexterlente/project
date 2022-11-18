@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const item = sessionStorage.getItem("article"); //hereeeeeeeeeeeeeeeeeeeeee
         if (item === "archiver") {
             archived_article("");
+        }else if(item ==="prof"){
+            show_profile("");
+        }else if(item === "tikol"){
+            view_article("");
         } else {
             load_articles("");
         }
@@ -213,13 +217,18 @@ function load_articles(addon,page) {
 
            // const clickable_article = document.getElementsByClassName('click_article');
            right_anchor.addEventListener('click', () => {
-            view_article(newMessage.id)});
+                    updateSession("tikol");
+                    view_article(newMessage.id);
+        });
 
         const clickable_author = document.createElement('p')
         clickable_author.innerHTML = `
         <a href = '#'>By: ${newMessage.author}</a>
         `;
-        clickable_author.addEventListener('click', () => show_profile(newMessage.author));
+        clickable_author.addEventListener('click', () => {
+                updateSession("prof");
+                show_profile(newMessage.author);
+            });
         const datedate = document.createElement('p')
         datedate.innerHTML = `
         ${newMessage.time_created}`;
