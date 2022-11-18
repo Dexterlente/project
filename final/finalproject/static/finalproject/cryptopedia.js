@@ -73,7 +73,9 @@ function load_post(addon){
                 <p>${newData.time_created_post}</p>
                 `;
                 //here
-                const updateSession = sessionStorage.setItem("postt", JSON.stringify(newData));
+                // const updateSession = sessionStorage.setItem("postt", JSON.stringify(newData));
+		// updateSession is being used as a function when its not a function. I've changed it to an arrow function now though!
+		const updateSession = () => sessionStorage.setItem("postt", JSON.stringify(newData));
                 console.log(JSON.stringify(newData));
                 ardata.addEventListener('click', () => {
                     updateSession("viewPost");
