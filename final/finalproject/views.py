@@ -207,7 +207,7 @@ def create_post(request):
 
 def load_post(request): 
     post = Post.objects.all()
-    posted = post.order_by("-time_created_post").all()
+    posted = post.order_by("-time_created").all()
     return JsonResponse({
         "posted": [post.serialize() for post in posted]}, safe=False)
 
@@ -218,7 +218,7 @@ def post(request, post_id):
         return JsonResponse({"error": "Post not found."}, status=404)
 
     if request.method == "GET":
-        return JsonResponse(article.serialize())
+        return JsonResponse(post.serialize())
 
     else:
         return JsonResponse({
