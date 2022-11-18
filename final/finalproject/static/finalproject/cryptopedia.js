@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     //             <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
     //     </ul>`
     	// By default, load the inbox
-	if (JSON.parse(sessionStorage.getItem("postt") !== null)) {
-		const item = sessionStorage.getItem("postt"); //hereeeeeeeeeeeeeeeeeeeeee
+	if (sessionStorage.getItem("postt") !== null) {
+		const item = JSON.parse(sessionStorage.getItem("postt")); //hereeeeeeeeeeeeeeeeeeeeee
 		if (item === "viewPost") {
-			view_post("id");
+			view_post("");
 		} else {
 			load_post("");
 		}
@@ -29,35 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
 //   const updateSession = (path) => {
 // 	JSON.stringify(sessionStorage.setItem("postt", path));
 // };
-function load_post(addon){
-    document.querySelector('#post-load').style.display = 'block';
-    document.querySelector('#profile').style.display = 'none';
-        fetch(`/post${addon}`)
-        .then(response => response.json())
-        .then(res => { 
-            console.log(res);
-            console.log("helloword");
-            
-            res.posted.forEach(newData => {
-                console.log(newData)
-                const ardata = document.createElement('div');
-                ardata.className = "list-group-item";
-                ardata.innerHTML = `
-                <h6>${newData.title_post}</h6>
-                <h5>By: ${newData.author_post}<h5>
-                <p>${newData.time_created_post}</p>
-                `;
-                //here
-                const updateSession = JSON.stringify(sessionStorage.setItem("postt", newData));
-                
-                ardata.addEventListener('click', () => {
-                    updateSession("viewPost");
-                    view_post(newData.id);
-                })
-
-                document.querySelector("#post-load").append(ardata);
-        })
-    })}
 
 function view_post(id){
     fetch(`/post/${id}`)
@@ -79,6 +50,36 @@ function view_post(id){
         </ul>
         `;
         document.querySelector('#post-contents').append(post_viewers);
-
+        
+       // const updateSession = sessionStorage.setItem('postes', JSON.stringify(posts));
+        console.log(JSON.stringify(posts))
         });
     };
+function load_post(addon){
+    document.querySelector('#post-load').style.display = 'block';
+    document.querySelector('#profile').style.display = 'none';
+        fetch(`/post${addon}`)
+        .then(response => response.json())
+        .then(res => { 
+            console.log(res);
+            
+            res.posted.forEach(newData => {
+                console.log(newData)
+                const ardata = document.createElement('div');
+                ardata.className = "list-group-item";
+                ardata.innerHTML = `
+                <h6>${newData.title_post}</h6>
+                <h5>By: ${newData.author_post}<h5>
+                <p>${newData.time_created_post}</p>
+                `;
+                //here
+                const updateSession = sessionStorage.setItem("postt", JSON.stringify(newData));
+                console.log(JSON.stringify(newData));
+                ardata.addEventListener('click', () => {
+                    updateSession("viewPost");
+                    view_post(newData.id);
+                })
+
+                document.querySelector("#post-load").append(ardata);
+        })
+    })}
