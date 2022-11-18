@@ -43,6 +43,7 @@ const updateSession = (path) => {
     sessionStorage.setItem("article", path);
     };
 
+
 function view_article(id){
     fetch(`/load/${id}`)
     .then(response => response.json())
@@ -340,6 +341,3 @@ function build_paginator(addon,page,num_pages) {
     
 }
 
-function load_post(param){
-    pass
-}

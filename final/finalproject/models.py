@@ -16,8 +16,7 @@ class Profile(models.Model):
             "profile_username": self.user.username,
         }
 
-    def __str__(self):
-        return self.profile_name
+
 
 class Article(models.Model):
     title = models.CharField(max_length=20)
@@ -54,7 +53,7 @@ class Post(models.Model):
             "id": self.id,
             "title_post": self.title_post,
             "content_post": self.content_post,
-            "image": self.image_post,
+            "image_post": self.image_post,
             "time_created_post": self.time_created_post.strftime("%b %#d, %Y"),
-            "author": f"{self.author.first_name} {self.author.last_name}",
+            "author_post": f"{self.author_post.first_name} {self.author_post.last_name}",
         }

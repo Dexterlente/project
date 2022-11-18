@@ -207,7 +207,7 @@ def create_post(request):
 
 def load_post(request): 
     post = Post.objects.all()
-    posted = post.order_by("-time_created").all()
+    posted = post.order_by("-time_created_post").all()
     return JsonResponse({
         "posted": [post.serialize() for post in posted]}, safe=False)
 
@@ -228,4 +228,3 @@ def post(request, post_id):
 def profile(request,user_id):
     profile = Profile.objects.filter(id=user_id).first()
     return JsonResponse(profile.serialize(request.user),status=200)
-
