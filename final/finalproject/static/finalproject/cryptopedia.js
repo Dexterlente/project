@@ -13,6 +13,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	//             <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
 	//     </ul>`
 	// By default, load the inbox
+    document.querySelector('#cryptopediaload').addEventListener('click', () =>{
+		clearSession();
+		load_token();
+});
+
 	if (sessionStorage.getItem("postID") !== null) {
 		const itemId = sessionStorage.getItem("postID");
 		view_post(itemId);
@@ -20,10 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		load_post("");
 	}
 });
-
-//   const updateSession = (path) => {
-// 	JSON.stringify(sessionStorage.setItem("postt", path));
-// };
+const clearSession = () => sessionStorage.clear()
 
 function view_post(id) {
 	fetch(`/post/${id}`)
@@ -71,7 +73,7 @@ function load_post(addon) {
 				const updateSession = () =>
 					sessionStorage.setItem("postID", newData.id);
 				ardata.addEventListener("click", () => {
-					updateSession("viewPost");
+					updateSession();
 					view_post(newData.id);
 				});
 
