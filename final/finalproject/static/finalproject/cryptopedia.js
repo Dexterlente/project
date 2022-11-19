@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (sessionStorage.getItem("postt") !== null) {
 		const item = JSON.parse(sessionStorage.getItem("postt")); //hereeeeeeeeeeeeeeeeeeeeee
 		if (item === "viewPost") {
-			view_post("");
+			view_post();
 		} else {
 			load_post("");
 		}

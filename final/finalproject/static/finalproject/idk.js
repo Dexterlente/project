@@ -31,3 +31,16 @@ retrieveEmails.forEach((mail) => {
   
   parentContainer.append(mailContainer);
 })
+
+               //here
+                // const updateSession = sessionStorage.setItem("postt", JSON.stringify(newData));
+		// updateSession is being used as a function when its not a function. I've changed it to an arrow function now though!
+		// const updateSession = () => sessionStorage.setItem("postt", JSON.stringify(newData));
+        //         console.log(JSON.stringify(newData));
+        //         ardata.addEventListener('click', () => {
+        //             updateSession("viewPost");
+        //             view_post(newData.id);
+        //         })
+
+        //         document.querySelector("#post-load").append(ardata);
+
