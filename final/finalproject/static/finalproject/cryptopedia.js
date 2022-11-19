@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	// By default, load the inbox
     document.querySelector('#cryptopediaload').addEventListener('click', () =>{
 		clearSession();
-		load_token();
 });
 
 	if (sessionStorage.getItem("postID") !== null) {
