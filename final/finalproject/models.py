@@ -14,6 +14,9 @@ class Profile(models.Model):
         return {
             "profile_id": self.user.id,
             "profile_username": self.user.username,
+            "profile_name": f"{self.user.first_name} {self.user.last_name}",
+            "profile_image": self.profile_image,
+            "profile_content": self.profile_content,
         }
 
 

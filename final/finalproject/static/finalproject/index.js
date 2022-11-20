@@ -14,8 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
         </ul>`
     document.querySelector('#indexdex').addEventListener('click', () =>{
-        updateSession("mainmain");
-        load_articles("");
+        clearSession();
     });
         document.querySelector('#archive-btn').addEventListener('click', () =>{
         updateSession("archiver");
@@ -23,26 +22,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     //archived_article("");
     //load_articles("");
+    if(sessionStorage.getItem("articleID") !== null) {
+        const itemId = sessionStorage.getItem("articleID");
+        view_article(itemId);
+    }
+    if(sessionStorage.getItem("authorID") !== null) {
+        const itemId2 = sessionStorage.getItem("authorID");
+        show_profile(itemId2);
+    }
     if (sessionStorage.getItem("article") !== null) {
         const item = sessionStorage.getItem("article"); //hereeeeeeeeeeeeeeeeeeeeee
         if (item === "archiver") {
             archived_article("");
-        }else if(item ==="prof"){
-            show_profile("");
-        }else if(item === "tikol"){
-            view_article("");
-        } else {
+        }else {
             load_articles("");
         }
     } else {
         load_articles("");
     }
+
+
   });
 
 const updateSession = (path) => {
     sessionStorage.setItem("article", path);
     };
-
+const clearSession = () => sessionStorage.clear()
 
 function view_article(id){
     fetch(`/load/${id}`)
@@ -69,15 +74,6 @@ function view_article(id){
         `;
         document.querySelector('#article-contents').append(article_viewers);
 
-        sessionStorage.setItem('articles', JSON.stringify(article));
-        console.log(article)
-        console.log(JSON.stringify(article))
-        console.log(sessionStorage.getItem('articles'));
-
-        //document.getElementById('article-contents').innerHTML=sessionStorage.getItem('articles');
-
-    
-
         const archive_button = document.createElement('button');
         archive_button.innerHTML = article.archived ? "Unarchive" : "Archive";
         archive_button.className = article.archived ? "btn btn-success" : "btn btn-danger";
@@ -92,18 +88,8 @@ function view_article(id){
         });
         document.querySelector('#archiver-btn').append(archive_button);
         //document.querySelector('#article-contents').append(archive_button);
-
-
         });
 
-
-        // sessionStorage.setItem('currentTab', id);
-        // const currentTab = sessionStorage.getItem('currentTab');
-        // if (currentTab) {
-        //     document.getElementById(currentTab).onload();
-        //   } else {
-        //     document.getElementByName("article-content").onload();
-        //   }
     };
   
 
@@ -115,11 +101,17 @@ function show_profile(author_id) {
     document.querySelector('#pages').style.display = 'none'; 
     document.querySelector('#profile').style.display = 'block';  
     document.querySelector('#archive-btn').style.display = 'none';
+
     fetch(`/profile/${author_id}`)
     .then(response => response.json())
     .then(profile => {
-        document.getElementById('profile_username').innerHTML=profile.profile_username;
-
+        console.log(profile);
+        console.log(HALOWORLD);
+        const profile_data = createElement("div")
+        profile_data.innerHTML=`
+        ${profile.profile_name}
+        `;
+        document.getElementById('profile_username').append(profile_data);
     })
     }
     
@@ -217,19 +209,23 @@ function load_articles(addon,page) {
         `<a href = "#">Read Here <span>>></span></a>`;
 
            // const clickable_article = document.getElementsByClassName('click_article');
-           right_anchor.addEventListener('click', () => {
-                    updateSession("tikol");
-                    view_article(newMessage.id);
+            const updateSession2 = () =>
+                sessionStorage.setItem("articleID", newMessage.id);
+            right_anchor.addEventListener("click", () => {
+                updateSession2();
+                view_article(newMessage.id);
         });
 
         const clickable_author = document.createElement('p')
         clickable_author.innerHTML = `
         <a href = '#'>By: ${newMessage.author}</a>
         `;
-        clickable_author.addEventListener('click', () => {
-                updateSession("prof");
-                show_profile(newMessage.author);
-            });
+        const updateSession3 = () =>
+            sessionStorage.setItem("authorID", newMessage.author);
+        clickable_author.addEventListener("click", () => {
+            updateSession3();
+            show_profile(newMessage.author);
+        });
         const datedate = document.createElement('p')
         datedate.innerHTML = `
         ${newMessage.time_created}`;

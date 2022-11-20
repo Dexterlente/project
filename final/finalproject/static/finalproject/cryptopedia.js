@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-	// let now = new Date();
-	// let months =
-	// ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	let now = new Date();
+	let months =
+	["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-	// let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	// // console.log(
-	// //     now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-	// //   );
-	//  document.getElementById('time').innerHTML = `
-	//     <ul>
-	//             <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
-	//             <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
-	//     </ul>`
+	let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	// console.log(
+	//     now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+	//   );
+	 document.getElementById('time').innerHTML = `
+	    <ul>
+	            <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
+	            <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
+	    </ul>`
 	// By default, load the inbox
     document.querySelector('#cryptopediaload').addEventListener('click', () =>{
 		clearSession();
