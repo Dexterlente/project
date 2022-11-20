@@ -20,16 +20,19 @@ document.addEventListener('DOMContentLoaded', function() {
         updateSession("archiver");
         archived_article("");
     });
+    document.querySelector('#cryptopediaload').addEventListener('click', () =>{
+		clearSession();
+});
     //archived_article("");
     //load_articles("");
     if(sessionStorage.getItem("articleID") !== null) {
         const itemId = sessionStorage.getItem("articleID");
         view_article(itemId);
     }
-    if(sessionStorage.getItem("authorID") !== null) {
-        const itemId2 = sessionStorage.getItem("authorID");
-        show_profile(itemId2);
-    }
+    // if(sessionStorage.getItem("authorID") !== null) {
+    //     const itemId2 = sessionStorage.getItem("authorID");
+    //     show_profile(itemId2);
+    // }
     if (sessionStorage.getItem("article") !== null) {
         const item = sessionStorage.getItem("article"); //hereeeeeeeeeeeeeeeeeeeeee
         if (item === "archiver") {
@@ -93,27 +96,26 @@ function view_article(id){
     };
   
 
-function show_profile(author_id) {
-    load_articles(`?profile=${author_id}`,1);
-    document.querySelector('#article-contents').style.display = 'none'; 
-    document.querySelector('#articles-load').style.display = 'none';
-    document.querySelector('#archived').style.display = 'none'; 
-    document.querySelector('#pages').style.display = 'none'; 
-    document.querySelector('#profile').style.display = 'block';  
-    document.querySelector('#archive-btn').style.display = 'none';
+// function show_profile(author_id) {
+//     document.querySelector('#article-contents').style.display = 'none'; 
+//     document.querySelector('#articles-load').style.display = 'none';
+//     document.querySelector('#archived').style.display = 'none'; 
+//     document.querySelector('#pages').style.display = 'none'; 
+//     document.querySelector('#profile').style.display = 'block';  
+//     document.querySelector('#archive-btn').style.display = 'none';
 
-    fetch(`/profile/${author_id}`)
-    .then(response => response.json())
-    .then(profile => {
-        console.log(profile);
-        console.log(HALOWORLD);
-        const profile_data = createElement("div")
-        profile_data.innerHTML=`
-        ${profile.profile_name}
-        `;
-        document.getElementById('profile_username').append(profile_data);
-    })
-    }
+//     fetch(`/profile/${author_id}`)
+//     .then(response => response.json())
+//     .then(profile => {
+//         console.log(profile);
+//         console.log(HALOWORLD);
+//         const profile_data = createElement("div")
+//         profile_data.innerHTML=`
+//         ${profile.profile_name}
+//         `;
+//         document.getElementById('profile').append(profile_data);
+//     })
+//     }
     
 function load_articles(addon,page) {
 
@@ -220,12 +222,12 @@ function load_articles(addon,page) {
         clickable_author.innerHTML = `
         <a href = '#'>By: ${newMessage.author}</a>
         `;
-        const updateSession3 = () =>
-            sessionStorage.setItem("authorID", newMessage.author);
-        clickable_author.addEventListener("click", () => {
-            updateSession3();
-            show_profile(newMessage.author);
-        });
+        // const updateSession3 = () =>
+        //     sessionStorage.setItem("authorID", newMessage.author);
+        // clickable_author.addEventListener("click", () => {
+        //     updateSession3();
+        //     show_profile(newMessage.author);
+        // });
         const datedate = document.createElement('p')
         datedate.innerHTML = `
         ${newMessage.time_created}`;
@@ -272,6 +274,18 @@ function archived_article(addon){
             <h5>By: ${newData.author}<h5>
             <p>${newData.time_created}</p>
             `;
+
+        // <article>
+                    
+        //     <div>
+        //         <h2>Here's how to track your stimulus check with the IRS Get My Payment Portal</h2>
+
+        //         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, repellendus?</p>
+
+        //         <a href = "#">Read More <span>>></span></a>
+        //     </div>
+        //     <img src = "images/right-1.jpg">
+        // </article>
             ardata.addEventListener('click', function() {
                 view_article(newData.id)
               });

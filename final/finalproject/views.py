@@ -71,7 +71,7 @@ def register(request):
             return render(request, "finalproject/register.html", {
                 "message": "Username already taken."
             })
-        login(request, user)
+        login(request, new_user)
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "finalproject/register.html")
@@ -146,7 +146,7 @@ def archived_article(request):
 
 def paginated_articles(request,articles):
     articles = articles.order_by("-time_created").all()
-    paginator = Paginator(articles,10)
+    paginator = Paginator(articles,6)
     page_obj = paginator.get_page(request.GET["page"])
     return JsonResponse({
         "articles": [article.serialize() for article in page_obj],
@@ -181,10 +181,10 @@ def create_post(request):
         image = request.POST['image']
         logged_user = request.user
         created_post = Post(
-            title=title,
-            content=content,
-            image=image,
-            author=logged_user,      
+            title_post=title,
+            content_post=content,
+            image_post=image,
+            author_post=logged_user,      
         )
         created_post.save()
     elif request.method == "PUT":

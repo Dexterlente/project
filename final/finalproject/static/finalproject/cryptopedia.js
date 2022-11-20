@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	            <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
 	    </ul>`
 	// By default, load the inbox
+	document.querySelector('#indexdex').addEventListener('click', () =>{
+        clearSession();
+    });
     document.querySelector('#cryptopediaload').addEventListener('click', () =>{
 		clearSession();
 });
