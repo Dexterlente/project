@@ -220,7 +220,7 @@ function load_articles(addon,page) {
 
         const clickable_author = document.createElement('p')
         clickable_author.innerHTML = `
-        <a href = '#'>By: ${newMessage.author}</a>
+        <a>By: ${newMessage.author}</a>
         `;
         // const updateSession3 = () =>
         //     sessionStorage.setItem("authorID", newMessage.author);
@@ -267,29 +267,26 @@ function archived_article(addon){
 
         data.archived.forEach(newData => {
             console.log(newData)
-            const ardata = document.createElement('div');
-            ardata.className = "list-group-item";
-            ardata.innerHTML = `
-            <h6>${newData.title}</h6>
-            <h5>By: ${newData.author}<h5>
+            const mainAr = document.createElement('section');
+            mainAr.className = "archive-container"
+            const archiveAr = document.createElement('article');
+            archiveAr.innerHTML = `<img src="${newData.image}">`
+
+            const headerAr = document.createElement('div');
+            headerAr.innerHTML = `<h2>${newData.title}</h2>
+            <h2><a href = "#">Read Here <span>>></span></a></h2>`
+            const bodyAr = document.createElement('div')
+            bodyAr.innerHTML = `
+            <p>${newData.author}</p>
             <p>${newData.time_created}</p>
-            `;
-
-        // <article>
-                    
-        //     <div>
-        //         <h2>Here's how to track your stimulus check with the IRS Get My Payment Portal</h2>
-
-        //         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, repellendus?</p>
-
-        //         <a href = "#">Read More <span>>></span></a>
-        //     </div>
-        //     <img src = "images/right-1.jpg">
-        // </article>
-            ardata.addEventListener('click', function() {
-                view_article(newData.id)
-              });
-            document.querySelector("#archived").append(ardata);
+             `;
+            headerAr.append(bodyAr);
+            archiveAr.append(headerAr);
+            mainAr.append(archiveAr);
+            // ardata.addEventListener('click', function() {
+            //     view_article(newData.id)
+            //   });
+            document.querySelector("#archived").append(mainAr);
         })
     })
 }
