@@ -39,13 +39,14 @@ function view_post(id) {
 			document.querySelector("#profile").style.display = "none";
 			document.querySelector("#post-load").style.display = "none";
 			const post_viewers = document.createElement("div");
-			post_viewers.innerHTML = `
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"> ${posts.title_post}</li>
-            <li class="list-group-item">By: ${posts.author_post}</li>
-            <li class="list-group-item">${posts.time_created_post}</li>
-            <li class="list-group-item py-5">${posts.content_post} </li>
-        </ul>
+			post_viewers.innerHTML = 
+		`
+		<div id="article-title">${posts.title_post}</div>
+		<div id="author-date">
+		<div>By: ${posts.author_post} </div>
+		<div>${posts.time_created_post}</div>
+		<div>
+		<div id="article-view-content">${posts.content_post} </div>
         `;
 			document.querySelector("#post-contents").append(post_viewers);
 
@@ -63,23 +64,40 @@ function load_post(addon) {
 
 			res.posted.forEach((newData) => {
 				console.log(newData);
-				const ardata = document.createElement("div");
-				ardata.className = "list-group-item";
-				ardata.innerHTML = `
-                <h6>${newData.title_post}</h6>
-                <h5>By: ${newData.author_post}<h5>
-                <p>${newData.time_created_post}</p>
-                `;
+				console.log(newData)
+				const mainAr = document.createElement('section');
+				mainAr.className = "archive-container"
+				const archiveAr = document.createElement('article');
+				archiveAr.innerHTML = `<img src="${newData.image_post}">`
+	
+				const headerAr = document.createElement('div');
+				headerAr.innerHTML = `<h2>${newData.title_post}</h2>
+				<h2><a href = "#">Read Here <span>>></span></a></h2>`
+				const bodyAr = document.createElement('div')
+				bodyAr.innerHTML = `
+				<p>${newData.author_post}</p>
+				<p>${newData.time_created_post}</p>
+				 `;
+				headerAr.append(bodyAr);
+				archiveAr.append(headerAr);
+				mainAr.append(archiveAr);
+				// const ardata = document.createElement("div");
+				// ardata.className = "list-group-item";
+				// ardata.innerHTML = `
+                // <h6>${newData.title_post}</h6>
+                // <h5>By: ${newData.author_post}<h5>
+                // <p>${newData.time_created_post}</p>
+                // `;
 
 				//here
 				const updateSession = () =>
 					sessionStorage.setItem("postID", newData.id);
-				ardata.addEventListener("click", () => {
+				headerAr.addEventListener("click", () => {
 					updateSession();
 					view_post(newData.id);
 				});
 
-				document.querySelector("#post-load").append(ardata);
+				document.querySelector("#post-load").append(mainAr);
 			});
 		});
 }

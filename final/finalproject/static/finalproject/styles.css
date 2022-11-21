@@ -271,6 +271,20 @@ main a:hover{
     margin-right: 10px;
 }
 
+/* article  */
+#article-title{
+    font-weight: bold;
+    font-size: 70px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+#article-view-content{
+    margin-top: 30px;
+    margin: 20px;
+}
+#author-date {
+    margin: 0px 20px;
+}
 
 @media(max-width: 460px){
 
@@ -335,8 +349,16 @@ main a:hover{
     .archive-container article img{
         margin-left: 10px;
     }
+    #article-title {
+        font-size: 40px;
+    }
 }
 
+@media(min-width: 1450px){
+    .archive-container article img{
+       margin-left: 500px;
+    }
+}
 
 @media(min-width: 768px){
 
@@ -344,7 +366,7 @@ main a:hover{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
 }
 
 

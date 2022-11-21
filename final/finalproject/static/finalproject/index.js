@@ -33,6 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
     //     const itemId2 = sessionStorage.getItem("authorID");
     //     show_profile(itemId2);
     // }
+    if(sessionStorage.getItem("archiveID") !== null) {
+        const itemId3 = sessionStorage.getItem("archiveID");
+        view_article(itemId3);
+    }
     if (sessionStorage.getItem("article") !== null) {
         const item = sessionStorage.getItem("article"); //hereeeeeeeeeeeeeeeeeeeeee
         if (item === "archiver") {
@@ -68,12 +72,12 @@ function view_article(id){
         const article_viewers = document.createElement('div');
         article_viewers.innerHTML=
          `
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"> ${article.title}</li>
-            <li class="list-group-item">By: ${article.author}</li>
-            <li class="list-group-item">${article.time_created}</li>
-            <li class="list-group-item py-5">${article.content} </li>
-        </ul>
+             <div id="article-title">${article.title}</div>
+             <div id="author-date">
+             <div>By: ${article.author} </div>
+             <div>${article.time_created}</div>
+             <div>
+             <div id="article-view-content">${article.content} </div>
         `;
         document.querySelector('#article-contents').append(article_viewers);
 
@@ -286,6 +290,13 @@ function archived_article(addon){
             // ardata.addEventListener('click', function() {
             //     view_article(newData.id)
             //   });
+            const updateSession3 = () =>
+                sessionStorage.setItem("archiveID", newData.id);
+            headerAr.addEventListener("click", () => {
+                updateSession3();
+                view_article(newData.id);
+            });
+
             document.querySelector("#archived").append(mainAr);
         })
     })
