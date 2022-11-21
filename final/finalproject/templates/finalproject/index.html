@@ -13,12 +13,16 @@
     <div id="search-articles"></div>
     <div id="archived"></div>
     <button type="button" id="archive-btn" class="btn btn-dark">Archived Articles</button>
+
     <div class="page-cont">
+        <nav aria-label="Page navigation example">
         <div id="pages" class ="row justify-content-center">
                     <ul id="pagination" class="pagination"></ul>
    
         </div>
+    </nav>
     </div>
+
     {% if user.is_authenticated %}
     <div id="archiver-btn"></div>
     {% endif %}

@@ -47,6 +47,7 @@ html {
 }
 #pages{
     position:relative;
+    border-radius: 10px;
 }
 .pagination {
     position: absolute;
@@ -286,6 +287,14 @@ main a:hover{
     margin: 0px 20px;
 }
 
+/* footer */
+footer {
+    display: block;
+    background-color: black;
+    width: 100%;
+    height: 300px;
+    margin: 100px 0 0 0;
+}
 @media(max-width: 460px){
 
 
@@ -354,7 +363,7 @@ main a:hover{
     }
 }
 
-@media(min-width: 1450px){
+@media(min-width: 1500px){
     .archive-container article img{
        margin-left: 500px;
     }
@@ -377,4 +386,13 @@ main a:hover{
         grid-template-columns: repeat(2, 1fr);
     }
 
+}
+
+/* marquee*/
+
+#coinmarketcap-widget-marquee{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
