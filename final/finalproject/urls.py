@@ -20,4 +20,6 @@ urlpatterns = [
     path("post",views.load_post, name="load_post"),
 
     path("post/<int:post_id>", views.post, name="post"),
+
+    path("search", views.search_articles, name="search_articles"),
 ]

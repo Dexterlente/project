@@ -18,16 +18,7 @@
     </nav>
     <nav class="navbar-light py-3" style="background-color: #e3f2fd;">
     <ul class="nav pr-4">
-        <!--
-        <li>
-            
-            <form action="{% url 'index' %}" id="search-form"> 
-                    <i class='bx bx-search' ></i>
-                    <input type="text" placeholder="Search..." type="search" name="query" id="search-input" aria-label="Search" >
-                <button class="btn btn-outline-success my-2 my-sm-0" id="btnsubmit" type="submit">Search</button>
-            </form>
-        </li>
-        -->
+
         <li class="nav-item px-4">
             <a href="{% url 'post_page' %}">
                 <span id="cryptopediaload" class="links_name">Cryptopedia</span>
@@ -42,6 +33,14 @@
         {% if user.is_authenticated %}
 
         <li class="nav-item">
+            <a href="{% url 'create_article' %}">
+                <span class="links_name mr-2"> Create Article</span>
+            </a>
+
+            <a href="{% url 'create_post' %}">
+                <span class="links_name mr-2"> Create Post</span>
+            </a>
+
             <a href="{% url 'logout' %}">
             <i class='bx bx-log-out-circle' ></i>
             <span class="links_name"> Logout</span>
@@ -61,7 +60,13 @@
                 <span class="links_name"> Register</span></a>
         </li>
         {% endif %}
-
+        <li id="ssbar" >
+            <form action="{% url 'search_articles' %}" id="search-form" method="get"> 
+                    <i class='bx bx-search' ></i>
+                    <input type="text" placeholder="Search..." type="search" name="query" id="search-input" aria-label="Search" >
+                <button class="btn btn-outline-success my-sm-0" id="btnsubmit" type="submit">Search</button>
+            </form>
+        </li>
 
     </ul>
 </nav>

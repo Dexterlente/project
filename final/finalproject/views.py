@@ -121,18 +121,17 @@ def load_articles(request):
     # articles = Article.order_by("-time_created").all()
     # return JsonResponse([article.serialize() for article in articles], safe=False)
 
-# def search_articles(request):
-#     search = request.GET.get('query')
-#     print(search)
-#     payload = []
-#     if search:
-#         articles = Article.objects.filter(title__icontains=search)
-#     else:
-#         articles = Article.objects.all()
+def search_articles(request):
+    search = request.GET.get('query')
+    print(search)
+    if search:
+        articles = Article.objects.filter(title__icontains=search)
+    else:
+        articles = Article.objects.all()
 
-#         for article in articles:
-#             payload.append(article.search)
-#     return JsonResponse({status: 200, 'data': payload})
+    return JsonResponse({
+        "searched":[article.serialize() for article in articles]}, safe=False)
+    print(article)
 #     #return paginated_articles(request,articles)
 # #OMG so hard to many errors
 @csrf_exempt

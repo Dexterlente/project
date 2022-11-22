@@ -146,44 +146,55 @@ function load_articles(addon,page) {
         
         const container_topleft = document.createElement('div');
         container_topleft.className = "container-top-left";
+        let image1 = document.getElementById('img1')
         container_topleft.innerHTML =`
-        <article>
-        <img src = "images/top-left.jpg">
-
-        <div>
-            <h3>Best Used Cars Under $20, 000 for families</h3>
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ea sint, nisi rem earum fugit? Facere veritatis sapiente eveniet quibusdam.</p>
-
-            <a href = "#">Read More <span>>></span></a>
-        </div>
-        </article>
+        <article><b>NEWS FLASH</b></article>
         `;
+        const container_topleft_body = document.createElement('div')
+        container_topleft_body.innerHTML = `            
+        <h3>Best Used Cars Under $20, 000 for families</h3>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ea sint, nisi rem earum fugit? Facere veritatis sapiente eveniet quibusdam.</p>
+
+        <a href = "#">Read More <span>>></span></a>
+        
+        `;
+        image1.append(container_topleft_body)
+        container_topleft.append(image1)
         left_section.append(container_topleft);
 
         const container_bottomleft = document.createElement('div');
         container_bottomleft.className = "container-bottom-left";
-        container_bottomleft.innerHTML = `
-        <article>
-        <img src = "images/bottom-left-1.jpg">
-            <div>
-                <h3>Best smart speakers for the year</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi iure modi animi cupiditate. Explicabo, nihil?</p>
 
-                <a href = "#">Read More <span>>></span></a>
-            </div>
-        </article>
+        const image2 = document.createElement('article');
+        const image22 = document.getElementById('img2')
+        const image3 = document.createElement('article');
+        
+        const image33 = document.getElementById('img3')
 
-        <article>
-            <img src = "images/bottom-left-2.jpg">
-                <div>
-                    <h3>iPad Pro, reviewed: Has the iPad become my main computer now?</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi iure modi animi cupiditate. Explicabo, nihil?</p>
 
-                    <a href = "#">Read More <span>>></span></a>
-                </div>
-        </article>
+        const container_bottomleftleft = document.createElement('div');
+        container_bottomleftleft.innerHTML = 
+        `
+        <h3>Best smart speakers for the year</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi iure modi animi cupiditate. Explicabo, nihil?</p>
+
+        <a href = "#">Read More <span>>></span></a>
         `;
+        const container_bottomleftright = document.createElement('div');
+        container_bottomleftright.innerHTML = 
+        `
+        <h3>iPad Pro, reviewed: Has the iPad become my main computer now?</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi iure modi animi cupiditate. Explicabo, nihil?</p>
+
+        <a href = "#">Read More <span>>></span></a>
+        `
+        image22.append(container_bottomleftleft);
+        image33.append(container_bottomleftright);
+        image2.append(image22);
+        image3.append(image33);
+        container_bottomleft.append(image2);
+        container_bottomleft.append(image3);
         left_section.append(container_bottomleft);
         article_card.append(left_section);
 
@@ -359,3 +370,9 @@ function build_paginator(addon,page,num_pages) {
     
 }
 
+function searched_article(addon){
+    fetch(`/archived${addon}`)
+    .then(response => response.json())
+    .then(data => { 
+        console.log(data);
+    })};
