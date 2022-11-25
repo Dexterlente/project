@@ -99,7 +99,6 @@ function view_article(id){
 
     };
   
-
 // function show_profile(author_id) {
 //     document.querySelector('#article-contents').style.display = 'none'; 
 //     document.querySelector('#articles-load').style.display = 'none';
@@ -120,7 +119,24 @@ function view_article(id){
 //         document.getElementById('profile').append(profile_data);
 //     })
 //     }
-    
+function searched_article(addon){
+    document.querySelector('#search-articles').style.display = 'block';
+    fetch(`/search?query=${addon}`)
+    .then(response => response.json())
+    .then(data => { 
+        console.log(data);
+        data.searched.forEach(newData => {
+            console.log(newData)
+
+            const searchedAr = document.createElement('div');
+            searchedAr.innerHTML = `
+            ${newData.title}
+            `;
+            document.querySelector("#search-articles").append(searchedAr);
+        })
+    })
+}
+
 function load_articles(addon,page) {
 
     document.querySelector('#articles-load').style.display = 'block';
@@ -370,9 +386,3 @@ function build_paginator(addon,page,num_pages) {
     
 }
 
-function searched_article(addon){
-    fetch(`/archived${addon}`)
-    .then(response => response.json())
-    .then(data => { 
-        console.log(data);
-    })};
