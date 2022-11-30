@@ -125,6 +125,13 @@ function view_article(id){
 //     }
 function searched_article(addon){
     document.querySelector('#search-articles').style.display = 'block';
+    document.querySelector('#articles-load').style.display = 'none';
+    document.querySelector('#profile').style.display = 'none';
+    document.querySelector('#article-contents').style.display = 'none';
+    document.querySelector('#pages').style.display = 'none';
+    document.querySelector('#archived').style.display = 'none';
+    document.querySelector('#archive-btn').style.display = 'none';
+    
     fetch(`/search${addon}`)
     .then(response => response.json())
     .then(data => { 
