@@ -131,11 +131,12 @@ function searched_article(addon){
     document.querySelector('#pages').style.display = 'none';
     document.querySelector('#archived').style.display = 'none';
     document.querySelector('#archive-btn').style.display = 'none';
-    
+
     fetch(`/search${addon}`)
     .then(response => response.json())
     .then(data => { 
         console.log(data)
+        document.getElementById('search-articles').innerHTML="";
         data.searched.forEach(newData => {
            // console.log(newData)
            console.log(newData)
