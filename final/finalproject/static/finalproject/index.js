@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //document.querySelector('#search-form').addEventListener('submit', searched_article());
 
-    const form = document.getElementById('search-form')
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        searched_article();
+    // const form = document.getElementById('search-form')
+    // form.addEventListener('submit', (e) => {
+    //     e.preventDefault();
+    //     searched_article();
 
-    });
+    // });
 
     if(sessionStorage.getItem("articleID") !== null) {
         const itemId = sessionStorage.getItem("articleID");

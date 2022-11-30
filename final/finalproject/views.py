@@ -120,7 +120,7 @@ def load_articles(request):
     #     return JsonResponse({"error": "Invalid"}, status=400)
     # articles = Article.order_by("-time_created").all()
     # return JsonResponse([article.serialize() for article in articles], safe=False)
-@csrf_exempt
+
 def search_articles(request):
     search = request.GET.get('query')
     print(search)
