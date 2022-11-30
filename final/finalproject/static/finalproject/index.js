@@ -1,18 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    let now = new Date();
-    let months = 
-    ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    // let now = new Date();
+    // let months = 
+    // ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    // console.log(
-    //     now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-    //   );
-     document.getElementById('time').innerHTML = `
-        <ul>
-                <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
-                <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
-        </ul>`
+    // let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    // // console.log(
+    // //     now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    // //   );
+    //  document.getElementById('time').innerHTML = `
+    //     <ul>
+    //             <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
+    //             <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
+    //     </ul>`
     document.querySelector('#indexdex').addEventListener('click', () =>{
         clearSession();
     });
@@ -23,16 +23,20 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#cryptopediaload').addEventListener('click', () =>{
 		clearSession();
 });
-    //archived_article("");
-    //load_articles("");
+
+    //document.querySelector('#search-form').addEventListener('submit', searched_article());
+
+    const form = document.getElementById('search-form')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        searched_article();
+
+    });
+
     if(sessionStorage.getItem("articleID") !== null) {
         const itemId = sessionStorage.getItem("articleID");
         view_article(itemId);
     }
-    // if(sessionStorage.getItem("authorID") !== null) {
-    //     const itemId2 = sessionStorage.getItem("authorID");
-    //     show_profile(itemId2);
-    // }
     if(sessionStorage.getItem("archiveID") !== null) {
         const itemId3 = sessionStorage.getItem("archiveID");
         view_article(itemId3);
@@ -49,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
+    
   });
 
 const updateSession = (path) => {
@@ -121,10 +126,10 @@ function view_article(id){
 //     }
 function searched_article(addon){
     document.querySelector('#search-articles').style.display = 'block';
-    fetch(`/search?query=${addon}`)
+    fetch(`/search${addon}`)
     .then(response => response.json())
     .then(data => { 
-        console.log(data);
+        console.log(data(helloworld));
         data.searched.forEach(newData => {
             console.log(newData)
 
