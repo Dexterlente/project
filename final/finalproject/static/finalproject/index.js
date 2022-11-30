@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const form = document.getElementById('search-form')
     form.addEventListener('submit', (e) => {
-        e.preventDefault("");
+        e.preventDefault();
         searched_article("");
     });
 

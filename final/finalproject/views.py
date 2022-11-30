@@ -124,10 +124,10 @@ def load_articles(request):
 def search_articles(request):
     search = request.GET.get('query')
     print(search)
-    if search:
-        articles = Article.objects.filter(title__icontains=search)
-    else:
-        articles = Article.objects.all()
+    try:
+        articles = Article.objects.filter(title__icontains=search).order_by("-time_created")
+    except:
+        articles = Article.objects.order_by("-time_created").all()
 
     return JsonResponse({
         "searched":[article.serialize() for article in articles]}, safe=False)
