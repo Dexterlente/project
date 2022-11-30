@@ -26,12 +26,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //document.querySelector('#search-form').addEventListener('submit', searched_article());
 
-    // const form = document.getElementById('search-form')
-    // form.addEventListener('submit', (e) => {
-    //     e.preventDefault();
-    //     searched_article();
-
-    // });
+    const form = document.getElementById('search-form')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault("");
+        searched_article("");
+    });
 
     if(sessionStorage.getItem("articleID") !== null) {
         const itemId = sessionStorage.getItem("articleID");
@@ -129,9 +128,10 @@ function searched_article(addon){
     fetch(`/search${addon}`)
     .then(response => response.json())
     .then(data => { 
-        console.log(data(helloworld));
+        console.log(data)
         data.searched.forEach(newData => {
-            console.log(newData)
+           // console.log(newData)
+           console.log(newData)
 
             const searchedAr = document.createElement('div');
             searchedAr.innerHTML = `
