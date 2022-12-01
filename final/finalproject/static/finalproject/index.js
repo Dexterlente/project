@@ -27,9 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
     //document.querySelector('#search-form').addEventListener('submit', searched_article());
 
     const form = document.getElementById('search-form')
+    const searchInput = document.getElementById('search-input');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        searched_article("");
+        // searched_article();
+        searched_article(searchInput.value); // Passing in what the user has entered.
     });
 
     if(sessionStorage.getItem("articleID") !== null) {
@@ -132,7 +134,8 @@ function searched_article(addon){
     document.querySelector('#archived').style.display = 'none';
     document.querySelector('#archive-btn').style.display = 'none';
 
-    fetch(`/search${addon}`)
+    console.log(addon)
+    fetch(`/search?query=${addon}`)
     .then(response => response.json())
     .then(data => { 
         console.log(data)

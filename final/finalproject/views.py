@@ -131,7 +131,6 @@ def search_articles(request):
 
     return JsonResponse({
         "searched":[article.serialize() for article in articles]}, safe=False)
-    print(article)
 
 @csrf_exempt
 def archived_article(request):
