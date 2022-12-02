@@ -31,6 +31,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // searched_article();
         searched_article(searchInput.value); // Passing in what the user has entered.
     });
+    let search_button = document.getElementById("search-btn")
+    searchInput.addEventListener("input", () => {
+        if(searchInput.value.length == 0) {
+          search_button.disabled = true
+      } else {
+          search_button.disabled = false
+      }
+    })
 
     if(sessionStorage.getItem("articleID") !== null) {
         const itemId = sessionStorage.getItem("articleID");
