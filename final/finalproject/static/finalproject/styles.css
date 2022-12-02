@@ -56,9 +56,7 @@ html {
     top: 0px;
     right: 25%;
 }
-#search-articles{
-    margin-bottom: 400px;
-}
+
 
 @media (max-width: 480px) {
   
@@ -289,14 +287,10 @@ footer {
     background-color: black;
     width: 100%;
     height: 300px;
-    margin: 100px 0 0 0;
+    margin: 450px 0 0 0;
     color: white;
 }
 
-#ssbar{
-    text-align: right;
-    float: right;
-}
 @media(max-width: 460px){
 
 

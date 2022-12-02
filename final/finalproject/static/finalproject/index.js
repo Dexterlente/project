@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
                 <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
         </ul>`;
+
     document.querySelector('#indexdex').addEventListener('click', () =>{
         clearSession();
     });
@@ -139,7 +140,6 @@ function view_article(id){
 function searched_article(addon){
     document.querySelector('#search-articles').style.display = 'block';
     document.querySelector('#articles-load').style.display = 'none';
-    document.querySelector('#profile').style.display = 'none';
     document.querySelector('#article-contents').style.display = 'none';
     document.querySelector('#pages').style.display = 'none';
     document.querySelector('#archived').style.display = 'none';
@@ -263,7 +263,7 @@ function load_articles(addon,page) {
         container_bottomleft.append(image2);
         container_bottomleft.append(image3);
         left_section.append(container_bottomleft);
-       // article_card.append(left_section);
+        article_card.append(left_section);
 
         
         const right_section = document.createElement('section');
@@ -381,11 +381,11 @@ function build_paginator(addon,page,num_pages) {
     
 function archived_article(addon){
     document.querySelector('#articles-load').style.display = 'none';
-    document.querySelector('#profile').style.display = 'none';
     document.querySelector('#article-contents').style.display = 'none';
     document.querySelector('#pages').style.display = 'none';
     document.querySelector('#archived').style.display = 'block';
     document.querySelector('#archive-btn').style.display = 'none';
+
 
     fetch(`/archived${addon}`)
     .then(response => response.json())
