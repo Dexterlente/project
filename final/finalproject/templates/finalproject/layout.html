@@ -17,59 +17,59 @@
         <div class="title . text-center" id="indexdex"><a href="{% url 'index' %}">News Daily</div>
     </nav>
     <nav class="navbar-light py-3" style="background-color: #e3f2fd;">
-    <ul class="nav pr-4">
+        <div class="container-fluid"> 
+            <ul class="nav pr-4">
 
-        <li class="nav-item px-4">
-            <a href="{% url 'post_page' %}">
-                <span id="cryptopediaload" class="links_name">Cryptopedia</span>
-            </a>
-        </li>  
-        <li class="nav-item pr-4">
-            <a href="{% url 'price' %}">
-                <span class="links_name">Live Prices</span>
-            </a>
-        </li>  
-        
-        {% if user.is_authenticated %}
+                <li class="nav-item px-4">
+                    <a href="{% url 'post_page' %}">
+                        <span id="cryptopediaload" class="links_name">Cryptopedia</span>
+                    </a>
+                </li>  
+                <li class="nav-item pr-4">
+                    <a href="{% url 'price' %}">
+                        <span class="links_name">Live Prices</span>
+                    </a>
+                </li>  
+                
+                {% if user.is_authenticated %}
 
-        <li class="nav-item">
-            <a href="{% url 'create_article' %}">
-                <span class="links_name mr-2"> Create Article</span>
-            </a>
+                <li class="nav-item">
+                    <a href="{% url 'create_article' %}">
+                        <span class="links_name mr-2"> Create Article</span>
+                    </a>
 
-            <a href="{% url 'create_post' %}">
-                <span class="links_name mr-2"> Create Post</span>
-            </a>
+                    <a href="{% url 'create_post' %}">
+                        <span class="links_name mr-2"> Create Post</span>
+                    </a>
 
-            <a href="{% url 'logout' %}">
-            <i class='bx bx-log-out-circle' ></i>
-            <span class="links_name"> Logout</span>
-        </a>
-        </li>
-        {% else %}
+                    <a href="{% url 'logout' %}">
+                    <i class='bx bx-log-out-circle' ></i>
+                    <span class="links_name"> Logout</span>
+                </a>
+                </li>
+                {% else %}
 
-        <li class="nav-item">
-            <a id="login" href="{% url 'login' %}">
-            <i class='bx bx-log-in-circle'></i>
-                <span class="links_name">Log In</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'register' %}">
-            <i class='bx bxs-registered'></i>
-                <span class="links_name"> Register</span></a>
-        </li>
-        {% endif %}
-        <li id="ssbar" >
-            <form action="{% url 'search_articles' %}" id="search-form" method="get"> 
-                {% csrf_token %}
-                    <i class='bx bx-search' ></i>
-                    <input type="text" placeholder="Search..." type="search" name="query" id="search-input" aria-label="Search" >
-                    <button type="submit" id="search-btn" disabled>Search </button>
-            </form>
-        </li>
+                <li class="nav-item">
+                    <a id="login" href="{% url 'login' %}">
+                    <i class='bx bx-log-in-circle'></i>
+                        <span class="links_name">Log In</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'register' %}">
+                    <i class='bx bxs-registered'></i>
+                        <span class="links_name"> Register</span></a>
+                </li>
+            </ul>
+                {% endif %}
+                    <form action="{% url 'search_articles' %}" id="search-form" method="get" class="form-right"> 
+                        {% csrf_token %}
+                            <i class='bx bx-search' ></i>
+                            <input type="text" placeholder="Search..." type="search" name="query" id="search-input" aria-label="Search" >
+                            <button type="submit" id="search-btn" disabled>Search </button>
+                    </form>
 
-    </ul>
+    </div>
 </nav>
 
   </div>

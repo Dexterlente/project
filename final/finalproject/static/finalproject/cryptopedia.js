@@ -81,15 +81,7 @@ function load_post(addon) {
 				headerAr.append(bodyAr);
 				archiveAr.append(headerAr);
 				mainAr.append(archiveAr);
-				// const ardata = document.createElement("div");
-				// ardata.className = "list-group-item";
-				// ardata.innerHTML = `
-                // <h6>${newData.title_post}</h6>
-                // <h5>By: ${newData.author_post}<h5>
-                // <p>${newData.time_created_post}</p>
-                // `;
 
-				//here
 				const updateSession = () =>
 					sessionStorage.setItem("postID", newData.id);
 				headerAr.addEventListener("click", () => {

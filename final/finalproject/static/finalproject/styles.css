@@ -9,7 +9,10 @@ html {
     text-decoration: none;
     color: black;
 }
-
+.form-right{
+    right: 10px;
+    position: absolute;
+}
 #time{
     position: relative;
     text-align: right;
