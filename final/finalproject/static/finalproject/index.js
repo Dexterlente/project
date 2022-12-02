@@ -263,7 +263,7 @@ function load_articles(addon,page) {
         container_bottomleft.append(image2);
         container_bottomleft.append(image3);
         left_section.append(container_bottomleft);
-        article_card.append(left_section);
+       // article_card.append(left_section);
 
         
         const right_section = document.createElement('section');
@@ -329,7 +329,7 @@ function load_articles(addon,page) {
     }
 
 function build_paginator(addon,page,num_pages) {
-    page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
+    const page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
     page_list.innerHTML="";
     const previous = document.createElement('li');
     if(page==1){
@@ -342,7 +342,7 @@ function build_paginator(addon,page,num_pages) {
     previous_page.className="page-link";
 
     previous_page.href="#";
-    previous_page.innerHTML="<";
+    previous_page.innerHTML="Previous";
     previous.append(previous_page);    
     page_list.append(previous);
     
@@ -374,7 +374,7 @@ function build_paginator(addon,page,num_pages) {
     const next_page = document.createElement('a');
     next_page.className="page-link"; 
     next_page.href="#";
-    next_page.innerHTML=">";
+    next_page.innerHTML="Next";
     next.append(next_page);
     page_list.append(next); 
 }
