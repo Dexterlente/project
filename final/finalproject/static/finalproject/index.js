@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <ul>
                 <li>${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}</li>
                 <li>${dayNames[now.getDay()]} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</li>
-        </ul>`
+        </ul>`;
     document.querySelector('#indexdex').addEventListener('click', () =>{
         clearSession();
     });
