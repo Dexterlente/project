@@ -85,6 +85,9 @@ function view_article(id){
         document.querySelector('#pages').style.display = 'none';
         document.querySelector('#archived').style.display = 'none';
         document.querySelector('#archive-btn').style.display = 'none';
+        document.querySelector('#img1').style.display = 'none';
+        document.querySelector('#img2').style.display = 'none';
+        document.querySelector('#img3').style.display = 'none';
         
         const article_viewers = document.createElement('div');
         article_viewers.innerHTML=
@@ -144,6 +147,9 @@ function searched_article(addon){
     document.querySelector('#archived').style.display = 'none';
     document.querySelector('#archive-btn').style.display = 'none';
     document.querySelector('#archive-btn').style.display = 'none';
+    document.querySelector('#img1').style.display = 'none';
+    document.querySelector('#img2').style.display = 'none';
+    document.querySelector('#img3').style.display = 'none';
 
     console.log(addon)
     fetch(`/search?query=${addon}`)
@@ -385,6 +391,9 @@ function archived_article(addon){
     document.querySelector('#pages').style.display = 'none';
     document.querySelector('#archived').style.display = 'block';
     document.querySelector('#archive-btn').style.display = 'none';
+    document.querySelector('#img1').style.display = 'none';
+    document.querySelector('#img2').style.display = 'none';
+    document.querySelector('#img3').style.display = 'none';
 
     fetch(`/archived${addon}`)
     .then(response => response.json())
