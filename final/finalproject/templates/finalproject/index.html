@@ -9,21 +9,21 @@
 </div>  
 <div id="img1"><img src="{% static 'finalproject/top-left.jpg' %}"></div>
 <div id="img2"><img src="{% static 'finalproject/bottom-left-1.jpg' %}"></div>
-<div id="img3"><img src="{% static 'finalproject/bottom-left-2.jpg' %}"></div>
+<div id="img3"><img src="{% static 'finalproject/bottom-left-2.jpg' %}"></div> 
     <div id="articles-load"></div>
     <div id="article-contents"></div>
     <div id="search-articles"></div>
     <div id="archived"></div>
     <button type="button" id="archive-btn" class="btn btn-dark">Archived Articles</button>
 
-    <div class="page-cont">
-        <nav aria-label="Page navigation example">
+ 
         <div id="pages" class ="row justify-content-center">
-                    <ul id="pagination" class="pagination"></ul>
-   
+            <nav aria-label="Page navigation example">
+                    <ul id="pagination" class="pagination">                      
+                    </ul>   
+            </nav>
         </div>
-        </nav>
-    </div>
+
 
     {% if user.is_authenticated %}
     <div id="archiver-btn"></div>

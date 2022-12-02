@@ -50,21 +50,11 @@ html {
 }
 #pages{
     position:relative;
-    border-radius: 10px;
 }
 .pagination {
     position: absolute;
     top: 0px;
     right: 25%;
-    border-radius: 10px;
-}
-.page-link{
-    border-radius: 10px;
-    background-color: black;
-}
-
-.page-item.active .page-link{
-    background-color: black;
 }
 
 @media (max-width: 480px) {

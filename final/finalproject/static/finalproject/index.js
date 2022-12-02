@@ -48,6 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const itemId3 = sessionStorage.getItem("archiveID");
         view_article(itemId3);
     }
+    if(sessionStorage.getItem("searchID") !== null) {
+        const itemId4 = sessionStorage.getItem("searchID");
+        view_article(itemId4);
+    }
     if (sessionStorage.getItem("article") !== null) {
         const item = sessionStorage.getItem("article"); //hereeeeeeeeeeeeeeeeeeeeee
         if (item === "archiver") {
@@ -74,6 +78,7 @@ function view_article(id){
     .then(article => {
         //print view article
         //console.log(article);
+        document.querySelector('#search-articles').style.display = 'none';
         document.querySelector('#articles-load').style.display = 'none';
         document.querySelector('#profile').style.display = 'none';
         document.querySelector('#article-contents').style.display = 'block';
@@ -150,11 +155,36 @@ function searched_article(addon){
            // console.log(newData)
            console.log(newData)
 
-            const searchedAr = document.createElement('div');
-            searchedAr.innerHTML = `
-            ${newData.title}
-            `;
-            document.querySelector("#search-articles").append(searchedAr);
+            // const searchedAr = document.createElement('div');
+            // searchedAr.innerHTML = `
+            // ${newData.title}
+            // `;
+            // document.querySelector("#search-articles").append(searchedAr);
+            
+            const mainSear = document.createElement('section');
+            mainSear.className = "archive-container"
+            const searchSear = document.createElement('article');
+            searchSear.innerHTML = `<img src="${newData.image}">`
+
+            const headerSear = document.createElement('div');
+            headerSear.innerHTML = `<h2>${newData.title}</h2>
+            <h2><a href = "#">Read Here <span>>></span></a></h2>`
+            const bodySear = document.createElement('div')
+            bodySear.innerHTML = `
+            <p>${newData.author}</p>
+            <p>${newData.time_created}</p>
+             `;
+            headerSear.append(bodySear);
+            searchSear.append(headerSear);
+            mainSear.append(searchSear);
+
+            const updateSession4 = () =>
+                sessionStorage.setItem("searchID", newData.id);
+            headerSear.addEventListener("click", () => {
+                updateSession4();
+                view_article(newData.id);
+        });
+            document.querySelector("#search-articles").append(mainSear);
         })
     })
 }
@@ -166,7 +196,6 @@ function load_articles(addon,page) {
     if (addon.includes("?")) {
         addon+=`&page=${page}`;
     } else {
-        document.querySelector('#profile').style.display = 'none';
         addon+=`?page=${page}`;
     }
     console.log(`access ${addon}`);
@@ -174,8 +203,9 @@ function load_articles(addon,page) {
     .then(response => response.json())
     .then(loads => {
         console.log(loads);
-    // loop foreach email messages
+
         document.getElementById('articles-load').innerHTML="";
+        build_paginator(addon,page,loads.num_pages);
 
         const article_card = document.createElement('main');
 
@@ -184,7 +214,7 @@ function load_articles(addon,page) {
         
         const container_topleft = document.createElement('div');
         container_topleft.className = "container-top-left";
-        let image1 = document.getElementById('img1')
+        const image11 = document.getElementById('img1')
         container_topleft.innerHTML =`
         <article><b>NEWS FLASH</b></article>
         `;
@@ -195,10 +225,9 @@ function load_articles(addon,page) {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ea sint, nisi rem earum fugit? Facere veritatis sapiente eveniet quibusdam.</p>
 
         <a href = "#">Read More <span>>></span></a>
-        
         `;
-        image1.append(container_topleft_body)
-        container_topleft.append(image1)
+        image11.append(container_topleft_body);
+        container_topleft.append(image11);
         left_section.append(container_topleft);
 
         const container_bottomleft = document.createElement('div');
@@ -241,7 +270,7 @@ function load_articles(addon,page) {
         right_section.className = "main-container-right"
         right_section.innerHTML= `<h2>Latest Stories</h2>`
         //loops
-        build_paginator(addon,page,loads.num_pages);
+ 
 
         loads.articles.forEach(newMessage => {
             //divimarts loops throu HOOOEPES
@@ -263,7 +292,6 @@ function load_articles(addon,page) {
         right_anchor.innerHTML = 
         `<a href = "#">Read Here <span>>></span></a>`;
 
-           // const clickable_article = document.getElementsByClassName('click_article');
             const updateSession2 = () =>
                 sessionStorage.setItem("articleID", newMessage.id);
             right_anchor.addEventListener("click", () => {
@@ -275,12 +303,7 @@ function load_articles(addon,page) {
         clickable_author.innerHTML = `
         <a>By: ${newMessage.author}</a>
         `;
-        // const updateSession3 = () =>
-        //     sessionStorage.setItem("authorID", newMessage.author);
-        // clickable_author.addEventListener("click", () => {
-        //     updateSession3();
-        //     show_profile(newMessage.author);
-        // });
+
         const datedate = document.createElement('p')
         datedate.innerHTML = `
         ${newMessage.time_created}`;
@@ -305,6 +328,57 @@ function load_articles(addon,page) {
        });       
     }
 
+function build_paginator(addon,page,num_pages) {
+    page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
+    page_list.innerHTML="";
+    const previous = document.createElement('li');
+    if(page==1){
+        previous.className = "page-item disabled";    
+    } else {
+        previous.className = "page-item";    
+        previous.addEventListener('click', () => load_articles(addon,page-1));
+    }
+    const previous_page = document.createElement('a');
+    previous_page.className="page-link";
+
+    previous_page.href="#";
+    previous_page.innerHTML="<";
+    previous.append(previous_page);    
+    page_list.append(previous);
+    
+    // page counter and page number = activate page
+    for (let thing=1; thing<=num_pages; thing++) {
+        const page_icon = document.createElement('li');        
+        if(thing==page) {
+            page_icon.className = "page-item active";
+        } else {
+            page_icon.className = "page-item";    
+            page_icon.addEventListener('click', () => load_articles(addon,thing));
+        }   
+        const page_a = document.createElement('a');
+        page_a.className="page-link";
+        page_a.href="#";
+        page_a.innerHTML=thing;
+        page_icon.append(page_a);
+
+        page_list.append(page_icon);
+    }
+
+    const next = document.createElement('li');        //if the active page is equals to the total number of page 
+    if(page==num_pages){                                // disable the next button if not increment the page number
+        next.className = "page-item disabled";    
+    } else {
+        next.className = "page-item";    
+        next.addEventListener('click', () => load_articles(addon,page+1));
+    }   
+    const next_page = document.createElement('a');
+    next_page.className="page-link"; 
+    next_page.href="#";
+    next_page.innerHTML=">";
+    next.append(next_page);
+    page_list.append(next); 
+}
+    
 function archived_article(addon){
     document.querySelector('#articles-load').style.display = 'none';
     document.querySelector('#profile').style.display = 'none';
@@ -351,60 +425,4 @@ function archived_article(addon){
     })
 }
 
-
-function build_paginator(addon,page,num_pages) {
-    page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
-    //const page_list = document.createElement('div');
-    page_list.innerHTML="";
-
-    const previous = document.createElement('li');
-    if(page==1){
-        console.log(previous)
-        previous.className = "page-item disabled";    
-    } else {
-        previous.className = "page-item";    
-        previous.addEventListener('click', () => load_articles(addon,page-1));
-    }
-    const previous_page = document.createElement('a');
-    previous_page.className="page-link";
-
-    previous_page.href="#";
-    previous_page.innerHTML="<";
-    previous.append(previous_page);    
-    page_list.append(previous);
-    
-    // page counter and page number = activate page
-    for (let item=1; item<=num_pages; item++) {
-        const page_icon = document.createElement('li');        
-        if(item==page) {
-            page_icon.className = "page-item active";
-        } else {
-            page_icon.className = "page-item";    
-            page_icon.addEventListener('click', () => load_articles(addon,item));
-        }   
-        const page_a = document.createElement('a');
-        page_a.className="page-link";
-        page_a.href="#";
-        page_a.innerHTML=item;
-        page_icon.append(page_a);
-
-        page_list.append(page_icon);
-    }
-
-    const next = document.createElement('li');        //if the active page is equals to the total number of page 
-    if(page==num_pages){                                // disable the next button if not increment the page number
-        next.className = "page-item disabled";    
-    } else {
-        next.className = "page-item";    
-        next.addEventListener('click', () => load_articles(addon,page+1));
-    }   
-    const next_page = document.createElement('a');
-    next_page.className="page-link"; 
-    next_page.href="#";
-    next_page.innerHTML=">";
-    next.append(next_page);
-    page_list.append(next);
-
-    
-}
 

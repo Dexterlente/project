@@ -147,7 +147,8 @@ def paginated_articles(request,articles):
     page_obj = paginator.get_page(request.GET["page"])
     return JsonResponse({
         "articles": [article.serialize() for article in page_obj],
-        "num_pages": paginator.num_pages }, safe=False)
+        "num_pages": paginator.num_pages 
+        }, safe=False)
 @csrf_exempt
 def article(request, article_id):
     try:
