@@ -81,7 +81,6 @@ function view_article(id){
         //console.log(article);
         document.querySelector('#search-articles').style.display = 'none';
         document.querySelector('#articles-load').style.display = 'none';
-        document.querySelector('#profile').style.display = 'none';
         document.querySelector('#article-contents').style.display = 'block';
         document.querySelector('#pages').style.display = 'none';
         document.querySelector('#archived').style.display = 'none';
@@ -143,6 +142,7 @@ function searched_article(addon){
     document.querySelector('#article-contents').style.display = 'none';
     document.querySelector('#pages').style.display = 'none';
     document.querySelector('#archived').style.display = 'none';
+    document.querySelector('#archive-btn').style.display = 'none';
     document.querySelector('#archive-btn').style.display = 'none';
 
     console.log(addon)
@@ -385,7 +385,6 @@ function archived_article(addon){
     document.querySelector('#pages').style.display = 'none';
     document.querySelector('#archived').style.display = 'block';
     document.querySelector('#archive-btn').style.display = 'none';
-
 
     fetch(`/archived${addon}`)
     .then(response => response.json())
