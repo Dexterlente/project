@@ -229,7 +229,7 @@ main a:hover{
     display: grid;
     grid-template-columns: 3fr 2fr;
     padding: 15px 0px 15px 20px;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid green;
     margin-right: 100px;
 }
 

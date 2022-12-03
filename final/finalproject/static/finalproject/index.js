@@ -211,7 +211,7 @@ function load_articles(addon,page) {
         console.log(loads);
 
         document.getElementById('articles-load').innerHTML="";
-        build_paginator(addon,page,loads.num_pages);
+       // build_paginator(addon,page,loads.num_pages);
 
         const article_card = document.createElement('main');
 
@@ -322,13 +322,6 @@ function load_articles(addon,page) {
         article_card.append(right_section);
         })
         
-        // const button_archived = document.createElement('button');
-        // button_archived.innerHTML = "Archived News"
-        // button_archived.className =  "btn btn-dark mt-4";
-        // button_archived.addEventListener('click', () => archived_article(""));
-
-        // right_section.append(button_archived);
-        
         document.querySelector("#articles-load").append(article_card);
         
        });       
@@ -385,22 +378,27 @@ function build_paginator(addon,page,num_pages) {
     page_list.append(next); 
 }
     
-function archived_article(addon){
+function archived_article(addon,page){
     document.querySelector('#articles-load').style.display = 'none';
     document.querySelector('#article-contents').style.display = 'none';
-    document.querySelector('#pages').style.display = 'none';
+    document.querySelector('#pages').style.display = 'block';
     document.querySelector('#archived').style.display = 'block';
     document.querySelector('#archive-btn').style.display = 'none';
     document.querySelector('#img1').style.display = 'none';
     document.querySelector('#img2').style.display = 'none';
     document.querySelector('#img3').style.display = 'none';
-
+    if (addon.includes("?")) {
+        addon+=`&page=${page}`;
+    } else {
+        addon+=`?page=${page}`;
+    }
+    console.log(`access ${addon}`);
     fetch(`/archived${addon}`)
     .then(response => response.json())
     .then(data => { 
         console.log(data);
-
-        data.archived.forEach(newData => {
+        build_paginator(addon,page,data.num_pages);
+        data.articles.forEach(newData => {
             console.log(newData)
             const mainAr = document.createElement('section');
             mainAr.className = "archive-container"

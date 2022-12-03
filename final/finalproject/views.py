@@ -110,8 +110,8 @@ def create_article(request):
     return index(request)
 
 def load_articles(request): 
-    articles = Article.objects.filter(archived=False)
-    return paginated_articles(request,articles)
+    articles = Article.objects.filter(archived=False).order_by("-time_created")
+   # return paginated_articles(request,articles)
     #return JsonResponse([article.serialize() for article in articles], safe=False)
         #return JsonResponse([article.serialize() for article in articles], safe=False)
     # elif load_articles == "archive":
@@ -119,7 +119,8 @@ def load_articles(request):
     # else:
     #     return JsonResponse({"error": "Invalid"}, status=400)
     # articles = Article.order_by("-time_created").all()
-    # return JsonResponse([article.serialize() for article in articles], safe=False)
+    return JsonResponse({
+        "articles": [article.serialize() for article in articles]}, safe=False)
 
 def search_articles(request):
     search = request.GET.get('query')
@@ -134,12 +135,12 @@ def search_articles(request):
 
 @csrf_exempt
 def archived_article(request):
-    archived = Article.objects.filter(archived=True)
-    archived = archived.order_by("-time_created").all()
-    return JsonResponse({
-        "archived": [archive.serialize() for archive in archived]}, safe=False)
-    print(archive)
-    #return paginated_articles(request,articles)
+    articles = Article.objects.filter(archived=True)
+    #archived = archived.order_by("-time_created").all()
+    # return JsonResponse({
+    #     "archived": [archive.serialize() for archive in archived]}, safe=False)
+    print(articles)
+    return paginated_articles(request,articles)
 
 def paginated_articles(request,articles):
     articles = articles.order_by("-time_created").all()
