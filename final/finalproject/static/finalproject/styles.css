@@ -53,8 +53,8 @@ html {
 }
 .pagination {
     position: absolute;
-    top: 0px;
-    right: 25%;
+    top: 200px;
+    right: 40%;
 }
 
 
@@ -67,7 +67,7 @@ html {
 
 .pagination {
 
-    right: 40%;
+    align-items: center;
 }
     
   }

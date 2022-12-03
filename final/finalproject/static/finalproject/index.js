@@ -326,57 +326,6 @@ function load_articles(addon,page) {
         
        });       
     }
-
-function build_paginator(addon,page,num_pages) {
-    const page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
-    page_list.innerHTML="";
-    const previous = document.createElement('li');
-    if(page==1){
-        previous.className = "page-item disabled";    
-    } else {
-        previous.className = "page-item";    
-        previous.addEventListener('click', () => load_articles(addon,page-1));
-    }
-    const previous_page = document.createElement('a');
-    previous_page.className="page-link";
-
-    previous_page.href="#";
-    previous_page.innerHTML="Previous";
-    previous.append(previous_page);    
-    page_list.append(previous);
-    
-    // page counter and page number = activate page
-    for (let thing=1; thing<=num_pages; thing++) {
-        const page_icon = document.createElement('li');        
-        if(thing==page) {
-            page_icon.className = "page-item active";
-        } else {
-            page_icon.className = "page-item";    
-            page_icon.addEventListener('click', () => load_articles(addon,thing));
-        }   
-        const page_a = document.createElement('a');
-        page_a.className="page-link";
-        page_a.href="#";
-        page_a.innerHTML=thing;
-        page_icon.append(page_a);
-
-        page_list.append(page_icon);
-    }
-
-    const next = document.createElement('li');        //if the active page is equals to the total number of page 
-    if(page==num_pages){                                // disable the next button if not increment the page number
-        next.className = "page-item disabled";    
-    } else {
-        next.className = "page-item";    
-        next.addEventListener('click', () => load_articles(addon,page+1));
-    }   
-    const next_page = document.createElement('a');
-    next_page.className="page-link"; 
-    next_page.href="#";
-    next_page.innerHTML="Next";
-    next.append(next_page);
-    page_list.append(next); 
-}
     
 function archived_article(addon,page){
     document.querySelector('#articles-load').style.display = 'none';
@@ -397,6 +346,7 @@ function archived_article(addon,page){
     .then(response => response.json())
     .then(data => { 
         console.log(data);
+        document.getElementById('archived').innerHTML="";
         build_paginator(addon,page,data.num_pages);
         data.articles.forEach(newData => {
             console.log(newData)
@@ -431,4 +381,53 @@ function archived_article(addon,page){
     })
 }
 
+function build_paginator(addon,page,num_pages) {
+    const page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
+    page_list.innerHTML="";
+    const previous = document.createElement('li');
+    if(page==1){
+        previous.className = "page-item disabled";    
+    } else {
+        previous.className = "page-item";    
+        previous.addEventListener('click', () => archived_article(addon,page-1));
+    }
+    const previous_page = document.createElement('a');
+    previous_page.className="page-link";
 
+    previous_page.href="#";
+    previous_page.innerHTML="Previous";
+    previous.append(previous_page);    
+    page_list.append(previous);
+    
+    // page counter and page number = activate page
+    for (let thing=1; thing<=num_pages; thing++) {
+        const page_icon = document.createElement('li');        
+        if(thing==page) {
+            page_icon.className = "page-item active";
+        } else {
+            page_icon.className = "page-item";    
+            page_icon.addEventListener('click', () => archived_article(addon,thing));
+        }   
+        const page_a = document.createElement('a');
+        page_a.className="page-link";
+        page_a.href="#";
+        page_a.innerHTML=thing;
+        page_icon.append(page_a);
+
+        page_list.append(page_icon);
+    }
+
+    const next = document.createElement('li');        //if the active page is equals to the total number of page 
+    if(page==num_pages){                                // disable the next button if not increment the page number
+        next.className = "page-item disabled";    
+    } else {
+        next.className = "page-item";    
+        next.addEventListener('click', () => archived_article(addon,page+1));
+    }   
+    const next_page = document.createElement('a');
+    next_page.className="page-link"; 
+    next_page.href="#";
+    next_page.innerHTML="Next";
+    next.append(next_page);
+    page_list.append(next); 
+}
