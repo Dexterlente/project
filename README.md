@@ -11,3 +11,10 @@
 ##### rather than traditional html file using django templating system
 ##### more user friendly as javascript has been included and faster loading times
 ***
+### finalproject folder
+##### contains 
+##### static
+##### templates
+##### models.py
+##### urls.py
+##### views.py
