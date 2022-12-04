@@ -12,9 +12,15 @@
 ##### more user friendly as javascript has been included and faster loading times
 ***
 ### finalproject folder
-##### contains 
+##### Contains 
 ##### static
 ##### templates
 ##### models.py
 ##### urls.py
 ##### views.py
+***
+
+### models.py
+##### There are three models contain in models.py
+##### Namely 
+##### User - An extension of Django's AbstractUser model. Which stores author information which is publishing the website and could be edited for more comprehensive data in the future
