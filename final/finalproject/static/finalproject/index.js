@@ -382,7 +382,7 @@ function archived_article(addon,page){
 }
 
 function build_paginator(addon,page,num_pages) {
-    page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
+    const page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
     page_list.innerHTML="";
     const previous = document.createElement('li');
     if(page==1){
@@ -397,7 +397,7 @@ function build_paginator(addon,page,num_pages) {
     previous_page.href="#";
     previous_page.innerHTML="Previous";
     previous.append(previous_page);    
-    page_list.append(previous);
+   // page_list.append(previous);
     
     // page counter and page number = activate page
     for (let thing=1; thing<=num_pages; thing++) {
@@ -428,6 +428,6 @@ function build_paginator(addon,page,num_pages) {
     next_page.className="page-link"; 
     next_page.href="#";
     next_page.innerHTML="Next";
-    next.append(next_page);
+    //next.append(next_page);
     page_list.append(next); 
 }
