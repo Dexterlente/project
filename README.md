@@ -5,7 +5,7 @@
 ##### Contains different features that could be upgraded depending for your preferrences
 ##### This web app is build on vanilla javascript for the frontend and Django framework for the backend
 ***
-### Newsite
+### News Site
 ##### this website you can create an account and update the website contents using api
 ##### frontend rendering is using vanilla javascript for fast website renderings
 ##### rather than traditional html file using django templating system
