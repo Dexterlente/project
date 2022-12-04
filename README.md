@@ -5,7 +5,7 @@
 ##### Contains different features that could be upgraded depending for your preferrences
 ##### This web app is build on vanilla javascript for the frontend and Django framework for the backend
 ***
-### News Site
+### Distinctiveness and Complexity
 ##### this website you can create an account and update the website contents using api
 ##### frontend rendering is using vanilla javascript for fast website renderings
 ##### rather than traditional html file using django templating system
@@ -23,4 +23,6 @@
 ### models.py
 ##### There are three models contain in models.py
 ##### Namely 
-##### User - An extension of Django's AbstractUser model. Which stores author information which is publishing the website and could be edited for more comprehensive data in the future
+##### User - An extension of Django's AbstractUser model. Which stores author information which is publishing the website and could be edited for more comprehensive data in the future.
+##### Article - the model which could be use to create an article structure and serialize to be an api for front end handling.
+##### Post - which almost the same model as an article but on an other part of the website which is on the cryptopedia tab on the nav bar.
