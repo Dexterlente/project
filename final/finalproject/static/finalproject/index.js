@@ -382,7 +382,7 @@ function archived_article(addon,page){
 }
 
 function build_paginator(addon,page,num_pages) {
-    const page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
+    page_list = document.getElementById('pagination');  // if page is 1, disable the previous button if not decrement on the page number
     page_list.innerHTML="";
     const previous = document.createElement('li');
     if(page==1){
