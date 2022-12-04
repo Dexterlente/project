@@ -428,6 +428,6 @@ function build_paginator(addon,page,num_pages) {
     next_page.className="page-link"; 
     next_page.href="#";
     next_page.innerHTML="Next";
-    //next.append(next_page);
-    page_list.append(next); 
+    next.append(next_page);
+    //page_list.append(next); 
 }
