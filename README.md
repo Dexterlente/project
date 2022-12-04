@@ -30,7 +30,14 @@
 ### urls.py 
 ### ROUTES
 ***
-#### / = index
+#### / = Index
 ##### which the homepage is rendered and all navigation in on here
 #### /live-prices = Live Price
 ##### fetched api of cryptocurrencies live price on php 24 hour change and marketcapitalization is in this tab on realtime
+#### /login = Login
+##### User Logs account to create articles or posts for the website.
+#### /logout = Logout
+##### User Logout on the website
+#### /register = Register
+##### register a non admin account for the sole purpose of creating articles or posts
+
