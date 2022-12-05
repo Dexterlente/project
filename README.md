@@ -75,3 +75,5 @@
 #### load_post - loading post api and returning post into a json format
 #### post - checking if post does exist and loading the contents
 ***
+## Files
++
