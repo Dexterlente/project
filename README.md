@@ -83,4 +83,5 @@
             + `index.js` - all front end renderings on the main index page of the website almost all json comming front views.py rendered here
             + `cryptopedia.js` - load post and article views rendered here
             + `price.js` - fetched cryptocurrency api rendered here
-   - `templates/finalproject - 
+   - `templates/finalproject` - html files of this website inside here
+        - `login.html`
