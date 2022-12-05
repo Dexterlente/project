@@ -46,4 +46,16 @@
 ##### creating article route for updating on the database
 #### /load<int:article_id> = Article ID
 ##### for loading a specific article and its contents
+#### /archived = Archive Articles
+##### if article archive is = true then archived articles will be loaded
+#### /post-page = Cryptopedia
+##### cryptopedia html tab will be rendered on this
+#### /create_post = Created Post
+##### so post will be created here on this tab
+#### /post = Post
+##### so every post model will be loaded with this endpoint
+#### /post/<int:post_id> = POST ID
+##### So post and its contents can be viewed here
+#### /search = Search
+##### searched articles endpoint would be rendered here
 
