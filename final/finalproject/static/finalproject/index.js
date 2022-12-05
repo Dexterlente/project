@@ -393,7 +393,6 @@ function build_paginator(addon,page,num_pages) {
     }
     const previous_page = document.createElement('a');
     previous_page.className="page-link";
-
     previous_page.href="#";
     previous_page.innerHTML="Previous";
     previous.append(previous_page);    
