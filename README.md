@@ -76,5 +76,6 @@
 #### post - checking if post does exist and loading the contents
 ***
 ## Files
-+ `finalproject`
-   - sad
++ `finalproject` - main application directory.
+   - `static/finalproject` - contains all static content
+         - js 
