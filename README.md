@@ -40,4 +40,10 @@
 ##### User Logout on the website
 #### /register = Register
 ##### register a non admin account for the sole purpose of creating articles or posts
+#### /load = Load Articles
+##### filtering of articles on data base an rendered them on the index page
+#### /create_article = Create Article
+##### creating article route for updating on the database
+#### /load<int:article_id> = Article ID
+##### for loading a specific article and its contents
 
