@@ -85,3 +85,10 @@
             + `price.js` - fetched cryptocurrency api rendered here
    - `templates/finalproject` - html files of this website inside here
         - `login.html`
+        - `register.html`
+        - `index.html`
+        - `layout.html`
+        - `create_article.html`
+        - `create_post.html`
+        - `cryptopedia.html`
+        - `price.html`
