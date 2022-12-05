@@ -80,3 +80,6 @@
    - `static/finalproject` - contains all static content
         - `css` - contains CSS file 
         - `js` - contains Javascript files
+         + `index.js` -
+         + `cryptopedia.js` -
+         + `price.js` -
