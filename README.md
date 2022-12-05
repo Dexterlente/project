@@ -1,4 +1,4 @@
-# CS50W Final Project - NEWS DAILY
+NEWS DAILY
 ***
 ### Overview
 ##### This project is a boilerplate and could be use as a base for a News Website
