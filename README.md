@@ -78,4 +78,5 @@
 ## Files
 + `finalproject` - main application directory.
    - `static/finalproject` - contains all static content
-        - `js` 
+        - `css` - contains CSS file 
+        - `js` - contains Javascript files
