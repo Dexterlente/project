@@ -109,5 +109,5 @@ this website will be updated in the future for new features that might include a
 + Improvements might include
    - better design
    - editing of the article and post
-   - PS: might rewrite this app on react as it was hard to use JS as the sites goes bigger
+   - PS: might rewrite this app on react as it was hard to use JS as the site goes bigger
 # Thank You
