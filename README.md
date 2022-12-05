@@ -26,10 +26,9 @@
 ##### User - An extension of Django's AbstractUser model. Which stores author information which is publishing the website and could be edited for more comprehensive data in the future.
 ##### Article - the model which could be use to create an article structure and serialize to be an api for front end handling.
 ##### Post - which almost the same model as an article but on an other part of the website which is on the cryptopedia tab on the nav bar.
-
+***
 ### urls.py 
 ### ROUTES
-***
 #### / = Index
 ##### which the homepage is rendered and all navigation in on here
 #### /live-prices = Live Price
@@ -58,4 +57,20 @@
 ##### So post and its contents can be viewed here
 #### /search = Search
 ##### searched articles endpoint would be rendered here
-
+***
+### views.py
+#### index
+#### price
+#### post_page
+#### login_view
+#### logout_view
+#### register
+#### create_article
+#### load_articles
+#### search_articles
+#### archived_article
+#### paginated_articles
+#### article
+#### create_post
+#### load_post
+#### post
