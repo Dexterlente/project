@@ -80,6 +80,7 @@
    - `static/finalproject` - contains all static content
         - `css` - contains CSS file 
         - `js` - contains Javascript files
-            + `index.js` 
-            + `cryptopedia.js` 
-            + `price.js` 
+            + `index.js` - all front end renderings on the main index page of the website almost all json comming front views.py rendered here
+            + `cryptopedia.js` - load post and article views rendered here
+            + `price.js` - fetched cryptocurrency api rendered here
+   - `templates/finalproject - 
