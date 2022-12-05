@@ -102,6 +102,7 @@
 ***
 ### Notes
 ***
-###### This Website is a boilerplate that could be optimize for customization depending on the news website you want
-###### this website gives an idea and already started with good template to start things and build on top of it.
-###### thank you
+This Website is a boilerplate that could be optimize for customization depending on the news website you want
+this website gives an idea and already started with good template to start things and build on top of it.
+this website will be updated in the future for new features that might include and better UI/UX for improvement
+# Thank You
