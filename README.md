@@ -23,6 +23,9 @@ I believe that my project meets this requirement for the following reasons:
 - `Article` - the model which could be use to create an article structure and serialize to be an api for front end handling.
 - `Post` - which almost the same model as an article but on an other part of the website which is on the cryptopedia tab on the nav bar.
 ***
+###### `Your web application must be mobile-responsive.`
+By using CSS mediaquery the site is responsive in different sizes specially the mobile ones
+***
 ### urls.py 
 ### ROUTES
 #### / = Index
