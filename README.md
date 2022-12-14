@@ -15,7 +15,8 @@ this website you can create an account and update the website contents using api
 I believe that my project meets this requirement for the following reasons:
 + This project is my idea as a boilerplate for my future news website which have necessary features for a functional website with JS for fast renderings as you will only need to customize the front end design according to your liking.
 + This website is build with superuser and just ordinary user as superuser can only delete post 
-+ 
++  This website uses fetch function for the price of cryptocurrency and can reuse the structure to other api like stocks, foreign currencies as this is a news site and outside api is needed.
++  Complexity of this site is higher as user JS for frontend rendering what higher rather than using the simple django templating system
 ##### models.py
 
 ###### `Your web application must utilize Django (including at least one model) on the back-end and JavaScript on the front-end.`
