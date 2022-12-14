@@ -118,12 +118,11 @@ By using CSS mediaquery the site is responsive in different sizes specially the 
 -Run "python manage.py runserver" to run the project.
 
 -The app should be running on 127.0.0.1:8000
-***
-### Test Account:
 
-Username: dexter23
-
-Password: dexter23
+##### Test Account:
+`Username:` dexter23
+`Password:` dexter23
+Or you could just hit register to register a new account.
 ### Notes
 ***
 This Website is a boilerplate that could be optimize for customization depending on the news website you want
