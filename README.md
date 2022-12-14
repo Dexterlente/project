@@ -17,8 +17,9 @@ I believe that my project meets this requirement for the following reasons:
 + This website is build with superuser and just ordinary user as superuser can only delete post 
 + 
 ##### models.py
-##### There are three models contain in models.py
- ###### `Your web application must utilize Django (including at least one model) on the back-end and JavaScript on the front-end.`
+
+###### `Your web application must utilize Django (including at least one model) on the back-end and JavaScript on the front-end.`
+##### There are three models contains in models.py
 - `User` - An extension of Django's AbstractUser model. Which stores author information which is publishing the website and could be edited for more comprehensive data in the future.
 - `Article` - the model which could be use to create an article structure and serialize to be an api for front end handling.
 - `Post` - which almost the same model as an article but on an other part of the website which is on the cryptopedia tab on the nav bar.
