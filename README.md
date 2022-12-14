@@ -8,7 +8,7 @@
 ### Distinctiveness and Complexity
 this website you can create an account and update the website contents using api frontend rendering is using vanilla javascript for fast website renderings rather than traditional html file using django templating system more user friendly as javascript has been included and faster loading times.
 
-#### According the the specification, my project must adhere to the following guidelines:
+#### According to the specification, my project must adhere to the following guidelines:
 
 ###### `Your web application must be sufficiently distinct from the other projects in this course (and, in addition, may not be based on the old CS50W Pizza project), and more complex than those.`
 
