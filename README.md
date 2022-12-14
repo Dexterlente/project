@@ -122,6 +122,7 @@ By using CSS mediaquery the site is responsive in different sizes specially the 
 ##### Test Account:
 - `Username:` dexter23
 - `Password:` dexter23
+
 Or you could just hit register to register a new account.
 ### Notes
 ***
