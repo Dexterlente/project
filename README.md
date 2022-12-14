@@ -59,21 +59,21 @@
 ##### searched articles endpoint would be rendered here
 ***
 ### `views.py`
-`index` - index html rendering
-`price` - price html rendering
-`post_page` - post_page html rendering
-`login_view` - logint logic for the backend
-`logout_view` - logout logic for the backend
-`register` - registering new account for making article, post 
-`create_article` - creating article updating data base with new entry
-`load_articles` - article backend filtering for front end rendering throwing in json format 
-`search_articles` - filtering base on frontend input and throwing back on front end on json format
-`archived_article` - filtering article with the logic on archive = true and return it on json format
-`paginated_articles` - paginating things for the api
-`article`  - checking if article does exist and loading the contents
-`create_post` - form for making post if you are logged in
-`load_post` - loading post api and returning post into a json format
-`post` - checking if post does exist and loading the contents
+- `index` - index html rendering
+- `price` - price html rendering
+- `post_page` - post_page html rendering
+- `login_view` - logint logic for the backend
+- `logout_view` - logout logic for the backend
+- `register` - registering new account for making article, post 
+- `create_article` - creating article updating data base with new entry
+- `load_articles` - article backend filtering for front end rendering throwing in json format 
+- `search_articles` - filtering base on frontend input and throwing back on front end on json format
+- `archived_article` - filtering article with the logic on archive = true and return it on json format
+- `paginated_articles` - paginating things for the api
+- `article`  - checking if article does exist and loading the contents
+- `create_post` - form for making post if you are logged in
+- `load_post` - loading post api and returning post into a json format
+- `post` - checking if post does exist and loading the contents
 ***
 ## Files
 + `finalproject` - main application directory.
