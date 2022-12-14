@@ -10,16 +10,15 @@ this website you can create an account and update the website contents using api
 
 #### According the the specification, my project must adhere to the following guidelines:
 
-`Your web application must be sufficiently distinct from the other projects in this course (and, in addition, may not be based on the old CS50W Pizza project), and more complex than those.`
+###### `Your web application must be sufficiently distinct from the other projects in this course (and, in addition, may not be based on the old CS50W Pizza project), and more complex than those.`
 
 I believe that my project meets this requirement for the following reasons:
 + This project is my idea as a boilerplate for my future news website which have necessary features for a functional website with JS for fast renderings as you will only need to customize the front end design according to your liking.
 + This website is build with superuser and just ordinary user as superuser can only delete post 
 + 
-***
-### models.py
+##### models.py
 ##### There are three models contain in models.py
-
+ ###### `Your web application must utilize Django (including at least one model) on the back-end and JavaScript on the front-end.`
 - `User` - An extension of Django's AbstractUser model. Which stores author information which is publishing the website and could be edited for more comprehensive data in the future.
 - `Article` - the model which could be use to create an article structure and serialize to be an api for front end handling.
 - `Post` - which almost the same model as an article but on an other part of the website which is on the cryptopedia tab on the nav bar.
