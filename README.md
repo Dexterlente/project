@@ -13,6 +13,9 @@ this website you can create an account and update the website contents using api
 `Your web application must be sufficiently distinct from the other projects in this course (and, in addition, may not be based on the old CS50W Pizza project), and more complex than those.`
 
 I believe that my project meets this requirement for the following reasons:
++ This project is my idea as a boilerplate for my future news website which have necessary features for a functional website with JS for fast renderings as you will only need to customize the front end design according to your liking.
++ This website is build with superuser and just ordinary user as superuser can only delete post 
++ 
 ***
 ### models.py
 ##### There are three models contain in models.py
