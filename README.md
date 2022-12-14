@@ -120,8 +120,8 @@ By using CSS mediaquery the site is responsive in different sizes specially the 
 -The app should be running on 127.0.0.1:8000
 
 ##### Test Account:
-`Username:` dexter23
-`Password:` dexter23
+- `Username:` dexter23
+- `Password:` dexter23
 Or you could just hit register to register a new account.
 ### Notes
 ***
